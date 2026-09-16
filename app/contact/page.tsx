@@ -1,0 +1,5 @@
+import type { Metadata } from "next";
+import { Footer, Header } from "@/components/site-chrome";
+import { InquiryForm } from "@/components/inquiry-form";
+export const metadata: Metadata = { title: "Start Your Custom Furniture Project | J. K. Oliver Woodworks", description: "Tell J. K. Oliver Woodworks about your custom furniture project in Austin, Buda, or the Texas Hill Country." };
+export default function Contact() { return <main><Header /><section className="contact-top section-pad"><p className="eyebrow">Start your project</p><h1>Let’s make room<br />for your <em>story.</em></h1><p>Tell us about the piece you have in mind. Whether your idea is fully formed or just beginning, we’ll help guide the next step.</p></section><section className="contact-layout section-pad"><div><h2>A personal conversation is where every piece begins.</h2><p>We build custom dining tables and furniture for homes across Austin and the Texas Hill Country.</p><p><a className="text-link" href="mailto:jeremyoliver@att.net">jeremyoliver@att.net <span>↗</span></a></p></div><InquiryForm /></section><Footer /></main>; }
