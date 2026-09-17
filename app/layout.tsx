@@ -3,6 +3,7 @@ import { businessSchema, pageMetadata, siteDescription, siteUrl, websiteSchema }
 import { JsonLd } from "@/components/json-ld";
 import "./globals.css";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { RouteScrollManager } from "@/components/route-scroll-manager";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -14,5 +15,5 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#f6f3ed" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><head><link rel="preload" href="/inter.ttf" as="font" type="font/ttf" crossOrigin="anonymous" /></head><body>{children}<ScrollReveal /><JsonLd data={[businessSchema, websiteSchema]} /></body></html>;
+  return <html lang="en"><head><link rel="preload" href="/inter.ttf" as="font" type="font/ttf" crossOrigin="anonymous" /></head><body>{children}<RouteScrollManager /><ScrollReveal /><JsonLd data={[businessSchema, websiteSchema]} /></body></html>;
 }
