@@ -355,20 +355,21 @@ footer { background: #241b15; padding-top: 85px; }
 }
 @media (max-width: 680px) { .collection-stage .cinematic-content h1 { font-size: clamp(46px, 14.2vw, 92px); } }
 
-/* A single, unhurried push into the room before the page releases. */
-.cinematic-stage { height: 155svh; min-height: 1080px; background: var(--paper); }
-.collection-stage { height: 150svh; }
+/* A restrained push into the room with only a short scroll hold. */
+.cinematic-stage { height: 120svh; min-height: 800px; background: var(--paper); }
+.collection-stage { height: 120svh; }
 .cinematic-hero { clip-path: none; }
-.cinematic-media { transform: scale(1.16); transform-origin: center 56%; animation: room-push 2s cubic-bezier(.22,.61,.36,1) both; will-change: transform; }
+.cinematic-media { transform: scale(1.08); transform-origin: center 56%; animation: room-push 1.6s cubic-bezier(.22,.61,.36,1) both; }
 .cinematic-media img { transform: none; }
+.cinematic-media img, .cinematic-media video { transition: opacity .4s ease; }
 .cinematic-media video { opacity: 0; }
 .cinematic-media.film-ready video { opacity: 1; }
 .cinematic-media.film-ready img { opacity: 0; }
-.cinematic-content { transform: translateY(calc(var(--hero-progress) * -20px)); }
+.cinematic-content { transform: translateY(calc(var(--hero-progress) * -8px)); }
 .cinematic-bottom { left: var(--gutter); right: var(--gutter); }
 .room-progress { position: absolute; inset: auto 0 0; height: 2px; background: #ead4b72a; }
 .room-progress span { display: block; height: 100%; width: 100%; background: #d9b68a; transform: scaleX(var(--hero-progress)); transform-origin: left; }
-@keyframes room-push { from { transform: scale(1.04); } to { transform: scale(1.16); } }
+@keyframes room-push { from { transform: scale(1.03); } to { transform: scale(1.08); } }
 
 /* The maker's note: a personal letter alongside a framed portrait. */
 .maker-note { padding-top: var(--section); padding-bottom: calc(var(--section) + 20px); background: #f2ece2; }
@@ -433,7 +434,7 @@ footer { background: #241b15; padding-top: 85px; }
   .footer-directory { gap: 30px; grid-template-columns: 1fr .7fr 1fr; }
 }
 @media (max-width: 680px) {
-  .cinematic-stage, .collection-stage { height: 145svh; min-height: 980px; }
+  .cinematic-stage, .collection-stage { height: calc(100svh + 72px); min-height: 740px; }
   .cinematic-hero { clip-path: none; }
   .cinematic-bottom { left: var(--gutter); right: var(--gutter); bottom: 17px; }
   .maker-note { padding-top: 65px; padding-bottom: 72px; }
