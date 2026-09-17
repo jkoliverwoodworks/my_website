@@ -21,11 +21,7 @@ The portfolio links preserve the chosen piece in the contact page. The short for
 
 ## Social card
 
-public/og.png is an actual PNG, 1734 × 907 pixels (approximately 1.91:1). Both Open Graph and X reference its absolute URL. It was generated once with the built-in image tool, inspected for correct text and copied into the project. It uses abstract wood grain, not invented furniture photographs.
-
-Final generation prompt:
-
-> Use case: ads-marketing. Asset type: branded Open Graph social-sharing card, landscape aspect ratio 1.91:1, approximately 1200 x 630 pixels. Create an elegant, restrained, typography-led editorial graphic for J. K. Oliver Woodworks. Mostly warm ivory (#f5f2ec), with an abstract natural wood grain texture strip on the right third, a flat texture rather than a product or photographed scene. Generous blank space and comfortable margins. Left two-thirds: brand near the top, large elegant serif headline at center-left, small support text near the bottom. Fine hairline rules. Dark chocolate type #33271f and muted brown accents #80654f. Exact text, once each: "J. K. OLIVER"; "WOODWORKS"; "Made for the moments that matter."; "Custom furniture. Buda, Texas." Refined serif headline and understated support text, excellent legibility at social preview sizes. No other text, furniture, invented product photos, people, badges, icons or watermarks.
+public/og-hero.jpg is a 1200 × 630 JPEG captured from the live homepage hero (headless Chrome at 1600 × 840, scaled down), so shared links show the real photography, the "Made to be kept." headline and the navigation exactly as visitors see them. Open Graph and X reference its absolute URL through `socialImage` in lib/site.ts. Recapture it whenever the hero design changes.
 
 ## Verification
 

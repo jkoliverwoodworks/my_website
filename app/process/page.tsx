@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { pageMetadata } from "@/lib/site";
+import { breadcrumbSchema, pageMetadata } from "@/lib/site";
+import { JsonLd } from "@/components/json-ld";
 import { Footer, Header, PageHero } from "@/components/site-chrome";
 import { ChapterLabel, StoryIndex, StoryNext } from "@/components/story-sections";
 
@@ -34,5 +35,5 @@ export default function Process() {
       <Link className="story-link" href="/investment"><span>Explore investment & common questions</span><span aria-hidden="true">↗</span></Link>
     </section>
     <StoryNext eyebrow="A closer look" title={<>The difference is<br /><em>in the details.</em></>} description="Get to know the materials and decisions that give a piece its character." href="/craftsmanship" link="Explore the craftsmanship" image="/lineage-table.jpg" alt="Rich wood tones of The Lineage table" />
-  </main><Footer /></>;
+  <JsonLd data={breadcrumbSchema([{ name: "The process", path: "/process" }])} /></main><Footer /></>;
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { pageMetadata } from "@/lib/site";
+import { breadcrumbSchema, pageMetadata } from "@/lib/site";
+import { JsonLd } from "@/components/json-ld";
 import { Footer, Header, PageHero } from "@/components/site-chrome";
 import { ChapterLabel, StoryIndex, StoryNext } from "@/components/story-sections";
 
@@ -28,5 +29,5 @@ export default function Craftsmanship() {
       <div className="wood-life-note"><span>Our approach</span><p>Good furniture earns its place.<br /><em>Then keeps it.</em></p></div>
     </section>
     <StoryNext eyebrow="The person behind the piece" title={<>A human touch.<br /><em>In every detail.</em></>} description="Meet Jeremy Oliver, and discover the family story at the heart of the work." href="/maker" link="Meet the maker" image="/foundry-table.jpg" alt="A solid wood dining table at the heart of a home" />
-  </main><Footer /></>;
+  <JsonLd data={breadcrumbSchema([{ name: "Craftsmanship", path: "/craftsmanship" }])} /></main><Footer /></>;
 }

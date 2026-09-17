@@ -4,7 +4,7 @@ const base = (process.argv[2] || "http://localhost:5173").replace(/\/$/, "");
 const expectedOrigin = process.env.NEXT_PUBLIC_SITE_URL || "https://jk-oliver-woodworks.andres-urreg-3756.chatgpt.site";
 const routes = ["/", "/work", "/craftsmanship", "/process", "/maker", "/investment", "/contact", ...["elm", "lineage", "foundry", "cypress", "hearth", "gathering"].map(slug => `/work/${slug}`)];
 const titles = new Set();
-const assets = new Set(["/og.png", "/favicon.svg", "/cormorant-regular.ttf", "/cormorant-italic.ttf", "/dm-sans.ttf", "/inter.ttf", "/woodworks-hero.mp4"]);
+const assets = new Set(["/og-hero.jpg", "/manifest.webmanifest", "/favicon.svg", "/cormorant-regular.ttf", "/cormorant-italic.ttf", "/dm-sans.ttf", "/inter.ttf", "/woodworks-hero.mp4"]);
 
 function attributes(tag) {
   return Object.fromEntries([...tag.matchAll(/([\w:-]+)="([^"]*)"/g)].map((match) => [match[1], match[2]]));
@@ -28,12 +28,17 @@ for (const route of routes) {
   assert.equal(meta(html, "og:url"), canonical, route + " OG URL");
   assert.equal(meta(html, "og:title"), title, route + " OG title");
   assert.equal(meta(html, "twitter:card"), "summary_large_image", route + " Twitter card");
-  assert.equal(meta(html, "og:image"), expectedOrigin + "/og.png", route + " OG image");
-  assert.equal(meta(html, "twitter:image"), expectedOrigin + "/og.png", route + " Twitter image");
+  assert.equal(meta(html, "og:image"), expectedOrigin + "/og-hero.jpg", route + " OG image");
+  assert.equal(meta(html, "og:image:width"), "1200", route + " OG image width");
+  assert.equal(meta(html, "twitter:image"), expectedOrigin + "/og-hero.jpg", route + " Twitter image");
   assert.equal((html.match(/<h1\b/g) || []).length, 1, route + " single H1");
   assert.match(html, /<main id="main-content"/, route + " main landmark");
   const json = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
   assert.ok(json.some((schema) => schema["@type"] === "FurnitureStore" && schema.url === expectedOrigin), route + " business schema");
+  assert.ok(json.some((schema) => schema["@type"] === "WebSite"), route + " website schema");
+  if (route !== "/") assert.ok(json.some((schema) => schema["@type"] === "BreadcrumbList" && schema.itemListElement.at(-1).item === canonical), route + " breadcrumb schema");
+  if (route === "/investment") assert.ok(json.some((schema) => schema["@type"] === "FAQPage" && schema.mainEntity.length > 0), route + " FAQ schema");
+  if (route === "/maker") assert.ok(json.some((schema) => schema["@type"] === "Person"), route + " person schema");
   for (const match of html.matchAll(/<img\b[^>]*>/g)) {
     const attr = attributes(match[0]);
     assert.ok(Object.hasOwn(attr, "alt"), route + " image alt");
@@ -47,6 +52,7 @@ const sitemapResponse = await fetch(base + "/sitemap.xml");
 assert.equal(sitemapResponse.status, 200);
 const sitemap = await sitemapResponse.text();
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+assert.ok((sitemap.match(/<image:loc>/g) || []).length >= routes.length, "sitemap image entries");
 assert.deepEqual(urls.sort(), routes.map((route) => expectedOrigin + (route === "/" ? "" : route)).sort());
 const robotsResponse = await fetch(base + "/robots.txt");
 assert.equal(robotsResponse.status, 200);
@@ -59,9 +65,9 @@ for (const asset of assets) {
   assert.ok(!response.headers.get("content-type")?.includes("text/html"), asset + " content type");
   const bytes = new Uint8Array(await response.arrayBuffer());
   assert.ok(bytes.length > 50, asset + " nonempty");
-  if (asset === "/og.png") assert.deepEqual([...bytes.slice(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
+  if (asset === "/og-hero.jpg") assert.deepEqual([...bytes.slice(0, 3)], [0xff, 0xd8, 0xff]);
 }
-console.log("PASS", assets.size, "image and font assets, including a valid PNG social card");
+console.log("PASS", assets.size, "image and font assets, including a valid JPEG social card and web manifest");
 
 const missing = await fetch(base + "/this-page-does-not-exist");
 assert.equal(missing.status, 404, "missing page status");

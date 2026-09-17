@@ -8,7 +8,7 @@ export function ScrollReveal() {
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (preference.matches) return;
-    const nodes = document.querySelectorAll(".intro-grid, .section-heading, .work-card, .craft-copy, .maker-copy, .maker-note-title, .maker-letter, .maker-portrait-composition, .steps article, .editorial > div, .portfolio article, .process-long article, .product-story");
+    const nodes = document.querySelectorAll(".intro-grid, .section-heading, .work-card, .craft-copy, .maker-copy, .maker-note-title, .maker-letter, .maker-portrait-composition, .steps article, .editorial > div, .collection-piece, .story-principles, .process-long article, .product-story");
     const observer = new IntersectionObserver((entries) => entries.forEach(entry => {
       if (entry.isIntersecting) { entry.target.classList.add("is-revealed"); observer.unobserve(entry.target); }
     }), { threshold: 0.08 });

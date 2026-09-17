@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { pageMetadata } from "@/lib/site";
+import { breadcrumbSchema, makerSchema, pageMetadata } from "@/lib/site";
+import { JsonLd } from "@/components/json-ld";
 import { Footer, Header, PageHero } from "@/components/site-chrome";
 import { ChapterLabel, StoryIndex, StoryNext } from "@/components/story-sections";
 
@@ -23,5 +24,5 @@ export default function Maker() {
       <div className="story-principles"><article><span>01 / Personal</span><h3>Room for your story.</h3><p>A home is personal. The furniture made for it should begin with listening.</p></article><article><span>02 / Considered</span><h3>Care in the details.</h3><p>The grain, the proportions, the feel of a finished edge. Small decisions that add up.</p></article><article><span>03 / Rooted here</span><h3>Made in Central Texas.</h3><p>Furniture built in Buda, for homes in Austin, the Hill Country, and the lives around each piece.</p></article></div>
     </section>
     <StoryNext eyebrow="Your story comes next" title={<>From a first idea.<br /><em>To a place to gather.</em></>} description="See how we work together to bring a piece of your own into the world." href="/process" link="Discover the process" image="/cypress-table.jpg" alt="The Cypress table surrounded by dining chairs" />
-  </main><Footer /></>;
+  <JsonLd data={[breadcrumbSchema([{ name: "The maker", path: "/maker" }]), makerSchema]} /></main><Footer /></>;
 }

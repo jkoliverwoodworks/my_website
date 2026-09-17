@@ -12,10 +12,10 @@ export function ChapterLabel({ number, children }: { number: string; children: R
   return <p className="eyebrow story-chapter"><span>{number}</span>{children}</p>;
 }
 
-export function StoryNext({ eyebrow, title, description, href, link, image, alt }: {
-  eyebrow: string; title: ReactNode; description: string; href: string; link: string; image: string; alt: string;
+export function StoryNext({ id, eyebrow, title, description, href, link, image, alt }: {
+  id?: string; eyebrow: string; title: ReactNode; description: string; href: string; link: string; image: string; alt: string;
 }) {
-  return <section className="story-next section-pad">
+  return <section id={id} className="story-next section-pad">
     <div className="story-next-copy"><p className="eyebrow">{eyebrow}</p><h2>{title}</h2><p>{description}</p><Link href={href} className="story-link"><span>{link}</span><span aria-hidden="true">↗</span></Link></div>
     <figure><img src={image} alt={alt} width="1400" height="1200" loading="lazy" /></figure>
   </section>;
