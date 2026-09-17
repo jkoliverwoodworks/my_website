@@ -1,5 +1,10 @@
 import type { MetadataRoute } from "next";
+import { routes, siteUrl } from "@/lib/site";
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://jk-oliver-woodworks.andres-urreg-3756.chatgpt.site";
-  return ["", "/work", "/craftsmanship", "/process", "/maker", "/investment", "/contact"].map((path) => ({ url: `${base}${path}`, lastModified: new Date(), changeFrequency: "monthly", priority: path === "" ? 1 : .8 }));
+  return routes.map((path) => ({
+    url: `${siteUrl}${path === "/" ? "" : path}`,
+    // Actual content revision; do not manufacture a new date for every crawl.
+    lastModified: "2026-09-17",
+  }));
 }

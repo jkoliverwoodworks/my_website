@@ -1,13 +1,16 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
-
-export function Header() {
-  return <header className="site-header"><a className="wordmark" href="/" aria-label="J. K. Oliver Woodworks home"><span>J. K. OLIVER</span><small>WOODWORKS</small></a><nav aria-label="Main navigation"><a href="/work">Our work</a><a href="/craftsmanship">Craftsmanship</a><a href="/process">Process</a><a href="/maker">The maker</a></nav><a className="header-cta" href="/contact">Start a project <span>↗</span></a></header>;
-}
+export { Header } from "@/components/site-header";
 
 export function Footer() {
-  return <footer><div className="wordmark"><span>J. K. OLIVER</span><small>WOODWORKS</small></div><p>Hill Country Roots. Authentic Craftsmanship.</p><a href="mailto:jeremyoliver@att.net">jeremyoliver@att.net</a><small>© {new Date().getFullYear()} J. K. Oliver Woodworks</small></footer>;
+  return <footer className="atelier-footer" id="footer">
+    <div className="footer-invitation"><div><p className="eyebrow">Your next chapter, made by hand</p><h2>Let’s make<br /><em>it yours.</em></h2></div><Link className="footer-project-link" href="/contact"><span>Start a conversation</span><span className="footer-project-arrow" aria-hidden="true">↗</span></Link></div>
+    <div className="footer-directory"><div className="footer-studio"><p className="eyebrow">Rooted here. Made for you.</p><p>Buda, Texas.<br />Austin & the Hill Country.</p><span>Custom furniture.<br />Crafted one piece at a time.</span></div><nav className="footer-links" aria-label="Explore"><p>Explore</p><Link href="/work">The collection</Link><Link href="/craftsmanship">Our craftsmanship</Link><Link href="/process">The process</Link><Link href="/maker">Meet Jeremy</Link></nav><div className="footer-links"><p>Let’s talk</p><a href="mailto:jeremyoliver@att.net">jeremyoliver@att.net <span aria-hidden="true">↗</span></a><Link href="/contact">Your project</Link><Link href="/investment">Investment & FAQs</Link></div></div>
+    <Link className="footer-signature" href="/" aria-label="J. K. Oliver Woodworks home"><span>J. K. OLIVER</span><small><span>WOODWORKS</span><span>Furniture with a story to tell.</span></small></Link>
+    <div className="footer-bottom"><span>© {new Date().getFullYear()} J. K. Oliver Woodworks</span><span>Made in Buda. Made to be kept.</span><a href="#main-content">Back to top <span aria-hidden="true">↑</span></a></div>
+  </footer>;
 }
 
 export function PageHero({ eyebrow, title, intro, image }: { eyebrow: string; title: ReactNode; intro: string; image: string }) {
-  return <section className="page-hero"><img src={image} alt="" /><div className="page-hero-shade" /><div className="page-hero-copy"><p className="eyebrow light">{eyebrow}</p><h1>{title}</h1><p>{intro}</p></div></section>;
+  return <section className="page-hero"><img src={image} alt="" width="1400" height="1200" fetchPriority="high" /><div className="page-hero-shade" /><div className="page-hero-copy"><p className="eyebrow light">{eyebrow}</p><h1>{title}</h1><p>{intro}</p></div></section>;
 }

@@ -1,15 +1,41 @@
 "use client";
 import { FormEvent, useState } from "react";
 
-export function InquiryForm() {
-  const [submitted, setSubmitted] = useState(false);
+export function InquiryForm({ piece = "" }: { piece?: string }) {
+  const [draftUrl, setDraftUrl] = useState("");
+  const [draftBody, setDraftBody] = useState("");
+  const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState(false);
+
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const values = new FormData(event.currentTarget);
-    const body = ["New J. K. Oliver Woodworks project inquiry", "", `Name: ${values.get("name")}`, `Email: ${values.get("email")}`, `Phone: ${values.get("phone") || "Not provided"}`, `Location: ${values.get("location") || "Not provided"}`, `Project: ${values.get("project")}`, `Timing: ${values.get("timing")}`, "", `Project notes: ${values.get("notes") || "Not provided"}`].join("\n");
-    window.location.href = `mailto:jeremyoliver@att.net?subject=${encodeURIComponent("Custom Furniture Project Inquiry")}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
+    const body = [
+      "Hello Jeremy, I’d love to talk about a custom piece.", "",
+      `Name: ${values.get("name")}`,
+      `Email: ${values.get("email")}`,
+      `Phone: ${values.get("phone") || "Not provided"}`,
+      ...(piece ? [`Inspired by: ${piece}`] : []),
+      "", `Project notes: ${values.get("notes") || "Let’s talk through the possibilities."}`,
+    ].join("\n");
+    setDraftBody(body);
+    setCopied(false);
+    setCopyError(false);
+    setDraftUrl(`mailto:jeremyoliver@att.net?subject=${encodeURIComponent("Custom Furniture Project Inquiry")}&body=${encodeURIComponent(body)}`);
   }
-  if (submitted) return <div className="form-success"><p className="eyebrow">Thank you</p><h2>Your story is a great place to begin.</h2><p>We’ll be in touch soon to learn more about your space and what you have in mind.</p></div>;
-  return <form className="inquiry-form" onSubmit={submit}><div className="form-two"><label>Your name<input required name="name" autoComplete="name" /></label><label>Email address<input required type="email" name="email" autoComplete="email" /></label></div><div className="form-two"><label>Phone number<input type="tel" name="phone" autoComplete="tel" /></label><label>Where is your home?<input name="location" placeholder="City or neighborhood" /></label></div><div className="form-two"><label>What are you considering?<select name="project"><option>Dining table</option><option>Custom furniture</option><option>Built-in or cabinetry</option><option>Not sure yet</option></select></label><label>Ideal timing<select name="timing"><option>Just exploring</option><option>Within 3 months</option><option>3–6 months</option><option>More than 6 months</option></select></label></div><label>Tell us about your project<textarea name="notes" rows={5} placeholder="Dimensions, inspiration, your family, your room—anything that will help us begin." /></label><button className="button button-dark" type="submit">Compose your inquiry <span>→</span></button><p className="form-note">Submitting opens a pre-filled email to Jeremy with your project details.</p></form>;
+
+  async function copyDetails() {
+    try { await navigator.clipboard.writeText(draftBody); setCopied(true); setCopyError(false); }
+    catch { setCopyError(true); }
+  }
+
+  return <form className="inquiry-form" onSubmit={submit} onChange={() => { if (draftUrl) { setDraftUrl(""); setDraftBody(""); } }}>
+    {piece && <p className="form-status">A piece that caught your eye: <strong>{piece}</strong></p>}
+    <div className="form-two"><label>Your name<input required name="name" autoComplete="name" maxLength={100} /></label><label>Email address<input required type="email" name="email" autoComplete="email" maxLength={254} /></label></div>
+    <label>Phone number (optional)<input type="tel" name="phone" autoComplete="tel" maxLength={40} /></label>
+    <label>What do you have in mind? (optional)<textarea name="notes" rows={5} maxLength={1800} placeholder="A table you love, the room it’s for, or simply an idea. We’ll work out the details together." /></label>
+    <button className="button button-dark" type="submit">Prepare your inquiry <span aria-hidden="true">↗</span></button>
+    <p className="form-note">We’ll prepare an email for you to review and send to Jeremy. Your details are not sent or stored by this website.</p>
+    {draftUrl && <div className="form-status" role="status"><p><strong>Your email draft is ready.</strong> Open it in your email app, then press Send there. Your inquiry has not been sent yet.</p><p><a href={draftUrl}>Open email draft ↗</a> · <button className="copy-button" type="button" onClick={copyDetails}>{copied ? "Details copied" : "Copy inquiry details"}</button></p><p>If an email app doesn’t open, email <a href="mailto:jeremyoliver@att.net">jeremyoliver@att.net</a> directly.</p>{copyError && <p>Copying isn’t available in this browser. You can select and copy the draft below.</p>}<details><summary>Review your message</summary><pre className="draft-preview">{draftBody}</pre></details></div>}
+  </form>;
 }

@@ -1,0 +1,22 @@
+import Link from "next/link";
+import type { ReactNode } from "react";
+
+export function StoryIndex({ label, items }: { label: string; items: { href: string; label: string }[] }) {
+  return <nav className="story-index section-pad" aria-label={label}>
+    <span className="story-index-label">{label}</span>
+    <div>{items.map((item, index) => <a key={item.href} href={item.href}><span aria-hidden="true">0{index + 1}</span>{item.label}</a>)}</div>
+  </nav>;
+}
+
+export function ChapterLabel({ number, children }: { number: string; children: ReactNode }) {
+  return <p className="eyebrow story-chapter"><span>{number}</span>{children}</p>;
+}
+
+export function StoryNext({ eyebrow, title, description, href, link, image, alt }: {
+  eyebrow: string; title: ReactNode; description: string; href: string; link: string; image: string; alt: string;
+}) {
+  return <section className="story-next section-pad">
+    <div className="story-next-copy"><p className="eyebrow">{eyebrow}</p><h2>{title}</h2><p>{description}</p><Link href={href} className="story-link"><span>{link}</span><span aria-hidden="true">↗</span></Link></div>
+    <figure><img src={image} alt={alt} width="1400" height="1200" loading="lazy" /></figure>
+  </section>;
+}

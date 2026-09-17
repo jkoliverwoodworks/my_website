@@ -1,0 +1,8 @@
+export const pieces = [
+  { slug: "elm", name: "The Elm", image: "/elm-table.jpg", material: "White oak", character: "Quiet simplicity", description: "Clean lines, a warm natural grain, and a presence that feels effortless. A considered starting point for the everyday rituals of your home." },
+  { slug: "lineage", name: "The Lineage", image: "/lineage-table.jpg", material: "Walnut", character: "Natural character", description: "Deep wood tones and expressive grain give this table its quiet confidence. A piece to build a room around, and a place to bring people together." },
+  { slug: "foundry", name: "The Foundry", image: "/soho-table.jpg", material: "Oak & steel", character: "A modern balance", description: "The warmth of wood meets the clarity of steel. A balance of substantial materials and thoughtful proportions, made personal to your space." },
+  { slug: "cypress", name: "The Cypress", image: "/cypress-table.jpg", material: "Solid wood", character: "An honest expression", description: "An appreciation of wood in its simplest form. Natural character and a considered silhouette bring a sense of ease to the room." },
+  { slug: "hearth", name: "The Hearth", image: "/foundry-table.jpg", material: "Solid wood", character: "At the heart of home", description: "A grounding presence for the places we gather. Made with the warmth, character, and everyday moments of home in mind." },
+  { slug: "gathering", name: "The Gathering", image: "/hearth-table.jpg", material: "Solid wood", character: "Room for another story", description: "For long dinners, unhurried conversations, and an extra chair at the table. A welcoming piece shaped around the way you live." },
+] as const;
