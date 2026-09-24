@@ -7,7 +7,7 @@ import { RouteScrollManager } from "@/components/route-scroll-manager";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  ...pageMetadata("/", "Custom Dining Tables in Austin | J. K. Oliver Woodworks", siteDescription),
+  ...pageMetadata("/", "Custom Dining Tables in Central Texas | J. K. Oliver Woodworks", siteDescription),
   applicationName: "J. K. Oliver Woodworks",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },

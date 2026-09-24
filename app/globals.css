@@ -196,8 +196,9 @@ h2 em { font-family: var(--serif); font-size: 1.13em; letter-spacing: -.03em; }
 .site-header { min-height: 96px; border-color: #cdbda980; }
 .wordmark > span { font: 400 24px/1 var(--sans); letter-spacing: -.04em; }
 .wordmark small { font-size: 8px; letter-spacing: .5em; margin-top: 11px; }
-.desktop-nav { font-size: 12px; gap: 30px; }
-.header-cta { font-size: 11px; border-radius: 2px; padding: 11px 19px; }
+.desktop-nav { font-size: 15px; font-weight: 500; gap: clamp(28px, 3vw, 48px); letter-spacing: -.01em; }
+.desktop-nav a { padding: 13px 0; }
+.header-cta { min-height: 52px; font-size: 14px; font-weight: 500; border-radius: 2px; padding: 13px 23px; }
 .header-overlay { position: absolute; inset: 0 0 auto; color: #f4e8d6; border-bottom: 1px solid #f4e8d638; }
 .header-overlay .desktop-nav a::after { background: currentColor; }
 .header-overlay .header-cta { border-color: #e7d2b48a; }
@@ -706,4 +707,99 @@ footer { background: #241b15; padding-top: 85px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .collection-piece > a:hover img, .collection-piece > a:hover .collection-piece-link > span { transform: none; }
+}
+
+/* Client revision: authentic branding and a direct, touch-friendly collection hero. */
+.brand-logo { flex: 0 0 auto; display: block; width: 188px; height: 68px; overflow: hidden; }
+.brand-logo > span { position: relative; display: block; width: 100%; height: 100%; overflow: hidden; }
+.brand-logo img { position: absolute; width: 188px; max-width: none; height: auto; left: 0; top: -24px; }
+.header-overlay .brand-logo img { filter: brightness(0) invert(1); }
+
+.home-collection { background: #281c14; color: #f4e8d6; }
+.home-carousel { position: relative; }
+.home-carousel-track { margin-left: 0; }
+.home-carousel-slide { padding-left: 0; }
+.home-carousel-card { position: relative; height: 100svh; min-height: 620px; overflow: hidden; }
+.home-carousel-card > img, .home-carousel-shade { position: absolute; inset: 0; width: 100%; height: 100%; }
+.home-carousel-card > img { object-fit: cover; object-position: center 58%; }
+.home-carousel-shade { background: linear-gradient(180deg, #21170f75 0%, #21170f0f 33%, #21170f59 58%, #21170fe8 100%), linear-gradient(90deg, #28190d55, transparent 70%); }
+.home-carousel-kicker { position: absolute; z-index: 1; top: 132px; left: var(--gutter); right: var(--gutter); display: flex; justify-content: space-between; gap: 24px; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: #ead4b7; }
+.home-carousel-copy { position: absolute; z-index: 1; left: var(--gutter); right: var(--gutter); bottom: 108px; display: grid; grid-template-columns: 1.35fr .65fr; align-items: end; gap: 7vw; }
+.home-carousel-copy .eyebrow { margin-bottom: 20px; color: #ead4b7; }
+.home-carousel-copy h1 { font: 400 clamp(72px, 9.2vw, 150px)/.88 var(--sans); letter-spacing: -.07em; margin: 0; color: #edddc5; }
+.home-carousel-copy h1 em { font-family: var(--serif); font-size: .72em; color: #d9b68a; letter-spacing: -.035em; }
+.home-carousel-aside { max-width: 360px; padding-bottom: 5px; }
+.home-carousel-aside p { font-size: clamp(13px, 1.25vw, 17px); line-height: 1.7; margin: 0 0 22px; }
+.home-carousel-aside a { display: flex; justify-content: space-between; align-items: center; gap: 24px; border-top: 1px solid #e5d2b969; padding-top: 15px; font-size: 12px; }
+.home-carousel-aside a span { font-size: 23px; }
+.home-carousel-controls { position: absolute; z-index: 2; left: var(--gutter); right: var(--gutter); bottom: 25px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 30px; border-top: 1px solid #e5d2b94a; padding-top: 14px; }
+.home-carousel-buttons { display: flex; gap: 8px; }
+.home-carousel-buttons button { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #e5d2b980; background: transparent; color: #f4e8d6; font-size: 20px; }
+.home-carousel-buttons button:hover { background: #f4e8d6; color: #281c14; }
+.home-carousel-dots { justify-self: center; display: flex; align-items: center; gap: 4px; }
+.home-carousel-dots button { display: grid; place-items: center; width: 30px; height: 44px; border: 0; padding: 0; background: transparent; }
+.home-carousel-dots button span { width: 100%; height: 2px; background: #e5d2b94d; transition: background .2s, transform .2s; }
+.home-carousel-dots button.is-current span { background: #e9ca9e; transform: scaleY(2); }
+.home-carousel-autoplay { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; border: 0; padding: 0; background: transparent; color: #e3cfb3; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+.home-carousel-autoplay:hover { color: #fff; }
+.home-carousel-autoplay span { font-size: 12px; }
+
+/* The family photograph is allowed to tell the story without a decorative overlay. */
+.maker-portrait-composition { padding: 0; }
+.maker-portrait { padding: 10px; }
+.maker-portrait > img { aspect-ratio: 4 / 3; object-position: center; }
+.maker-note-grid { grid-template-columns: 1.2fr .8fr; gap: 7vw; }
+
+/* Every design family receives equal visual weight. */
+.collection-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 88px 5vw; }
+.collection-piece:nth-child(3), .collection-piece:nth-child(6) { margin-top: 0; }
+.collection-piece-copy { padding-top: 26px; }
+.collection-piece-description { margin-top: 18px; padding-right: 45px; }
+
+.footer-brand-lockup { display: flex; flex-direction: column; align-items: center; width: min(100%, 610px); margin: 0 auto 46px; text-align: center; }
+.footer-logo-crop { position: relative; display: block; overflow: hidden; width: min(100%, 470px); height: 128px; }
+.footer-logo-crop img { position: absolute; width: 470px; max-width: none; height: auto; top: -54px; left: 50%; transform: translateX(-50%); }
+.footer-logo-crop img { filter: brightness(0) invert(.84) sepia(.35) saturate(.8); }
+.footer-brand-lockup strong { display: block; margin-top: 19px; font: italic 23px/1.3 var(--serif); color: #d4b692; }
+
+@media (max-width: 900px) {
+  .brand-logo { width: 164px; height: 60px; }
+  .brand-logo img { width: 164px; top: -21px; }
+  .mobile-menu summary { font-size: 15px; font-weight: 500; }
+  .mobile-menu nav { font-size: 16px; }
+  .mobile-menu nav a { padding: 14px 0; }
+  .home-carousel-copy { grid-template-columns: 1.15fr .85fr; gap: 5vw; }
+  .home-carousel-copy h1 { font-size: clamp(65px, 10.5vw, 100px); }
+  .maker-note-grid { grid-template-columns: 1fr; }
+  .maker-letter { max-width: 620px; }
+}
+
+@media (max-width: 680px) {
+  .site-header { padding-top: 12px; padding-bottom: 12px; }
+  .brand-logo { width: 124px; height: 48px; }
+  .brand-logo img { width: 124px; top: -14px; }
+  .header-cta { min-height: 44px; padding: 10px 13px; font-size: 12px; }
+  .mobile-menu summary { font-size: 13px; }
+  .home-carousel-card { height: 100svh; min-height: 660px; }
+  .home-carousel-card > img { object-position: 58% center; }
+  .home-carousel-kicker { top: 104px; font-size: 8px; }
+  .home-carousel-kicker span:first-child { max-width: 150px; }
+  .home-carousel-copy { grid-template-columns: 1fr; gap: 20px; bottom: 115px; }
+  .home-carousel-copy .eyebrow { font-size: 8px; margin-bottom: 15px; }
+  .home-carousel-copy h1 { font-size: clamp(58px, 17vw, 88px); }
+  .home-carousel-aside { max-width: 310px; }
+  .home-carousel-aside p { display: none; }
+  .home-carousel-aside a { padding-top: 11px; font-size: 11px; }
+  .home-carousel-controls { grid-template-columns: auto 1fr; gap: 16px; bottom: 15px; padding-top: 8px; }
+  .home-carousel-buttons button { width: 42px; height: 42px; }
+  .home-carousel-dots { justify-self: end; gap: 1px; }
+  .home-carousel-dots button { width: 20px; height: 42px; }
+  .home-carousel-autoplay { display: none; }
+  .maker-portrait-composition { padding: 0; }
+  .maker-portrait > img { aspect-ratio: 4 / 3; }
+  .collection-list { grid-template-columns: 1fr; gap: 64px; }
+  .collection-piece-description { padding-right: 0; }
+  .footer-logo-crop { width: min(100%, 360px); height: 98px; }
+  .footer-logo-crop img { width: 360px; top: -41px; }
+  .footer-brand-lockup strong { font-size: 19px; }
 }

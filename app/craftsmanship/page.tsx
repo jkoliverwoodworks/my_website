@@ -8,7 +8,7 @@ export const metadata = pageMetadata("/craftsmanship", "Solid-Wood Furniture Cra
 
 export default function Craftsmanship() {
   return <><Header /><main id="main-content" className="story-page craftsmanship-page">
-    <PageHero eyebrow="Materials & craftsmanship" title={<>Made slowly.<br /><em>Made to last.</em></>} intro="The materials, methods, and attention behind furniture that becomes more meaningful with time." image="/heritage-detail.jpg" />
+    <PageHero eyebrow="Materials & craftsmanship" title={<>Built with purpose.<br /><em>Made to last.</em></>} intro="The materials, proven methods, and careful decisions behind furniture made for everyday life." image="/heritage-detail.jpg" />
     <StoryIndex label="An appreciation of craft" items={[{ href: "#materials", label: "The materials" }, { href: "#details", label: "The details" }, { href: "#living-with-wood", label: "Life with wood" }]} />
     <section id="materials" className="material-story section-pad">
       <ChapterLabel number="01">It begins with the wood</ChapterLabel>

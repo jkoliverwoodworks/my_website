@@ -9,7 +9,7 @@ export const siteUrl = new URL(
 
 export const siteName = "J. K. Oliver Woodworks";
 export const siteDescription =
-  "Custom solid-wood dining tables and furniture, handcrafted in Buda for homes across Austin and the Texas Hill Country. Start a conversation with maker Jeremy Oliver.";
+  "Custom solid-wood dining tables and furniture, handcrafted in Buda for homes across Central Texas. Start a conversation with maker Jeremy Oliver.";
 export const routes = [
   "/", "/work", "/craftsmanship", "/process", "/maker", "/investment", "/contact",
   ...pieces.map(piece => `/work/${piece.slug}`),
@@ -46,7 +46,7 @@ export const businessSchema = {
   address: { "@type": "PostalAddress", addressLocality: "Buda", addressRegion: "TX", addressCountry: "US" },
   areaServed: [
     ...["Buda", "Austin", "Dripping Springs", "Wimberley"].map(name => ({ "@type": "City", name })),
-    { "@type": "Place", name: "Texas Hill Country" },
+    { "@type": "AdministrativeArea", name: "Central Texas" },
   ],
   founder: { "@id": `${siteUrl}/maker#jeremy-oliver` },
   knowsAbout: ["Custom dining tables", "Solid hardwood furniture", "White oak furniture", "Walnut furniture", "Bespoke furniture design"],

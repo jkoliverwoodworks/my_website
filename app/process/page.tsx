@@ -4,7 +4,7 @@ import { JsonLd } from "@/components/json-ld";
 import { Footer, Header, PageHero } from "@/components/site-chrome";
 import { ChapterLabel, StoryIndex, StoryNext } from "@/components/story-sections";
 
-export const metadata = pageMetadata("/process", "The Custom Furniture Process | J. K. Oliver Woodworks", "From your first idea to a finished piece: learn how to commission custom furniture with Jeremy Oliver in Buda and Austin, Texas.");
+export const metadata = pageMetadata("/process", "The Custom Furniture Process | J. K. Oliver Woodworks", "From your first idea to a finished piece: learn how to commission custom furniture with Jeremy Oliver in Buda, serving Central Texas.");
 
 const stages = [
   { number: "01", label: "The conversation", title: "Start with the way", emphasis: "you live.", text: "The room, the people, the everyday rituals. Before we talk about wood or dimensions, we talk about what this piece will mean in your home.", detail: "Bring a saved image, a rough sketch, or simply an idea. You don’t need to have the answers before we begin.", note: "A place to begin", image: "/hearth-table.jpg", alt: "A dining table set in a welcoming room" },
@@ -15,11 +15,11 @@ const stages = [
 
 export default function Process() {
   return <><Header /><main id="main-content" className="story-page process-page">
-    <PageHero eyebrow="The process" title={<>A piece with your<br /><em>life in mind.</em></>} intro="Custom should feel personal and clear. Here is how we move from a first idea to a finished piece in your home." image="/cypress-table.jpg" />
+    <PageHero eyebrow="The process" title={<>Your idea, shaped<br /><em>with confidence.</em></>} intro="A clear, collaborative path from the first conversation to a finished piece made for your home." image="/cypress-table.jpg" />
     <StoryIndex label="The commissioning journey" items={[{ href: "#approach", label: "The approach" }, { href: "#journey", label: "Four steps" }, { href: "#before-we-begin", label: "Before we begin" }]} />
     <section id="approach" className="story-intro section-pad">
       <ChapterLabel number="01">A personal process</ChapterLabel>
-      <div className="story-intro-grid"><h2>Considered together.<br /><em>Crafted for you.</em></h2><div><p>A custom piece starts with a connection. You work directly with Jeremy, from the earliest conversation to the final details.</p><p>There is room to explore, ask questions, and find what feels right. The process should be as thoughtful as the furniture itself.</p></div></div>
+      <div className="story-intro-grid"><h2>Clear at every step.<br /><em>Personal from the start.</em></h2><div><p>You work directly with Jeremy from the first conversation through the final details, with clear decisions around design, budget, timing, and delivery.</p><p>Bring an idea or begin with one of the named designs. Together, we shape a piece that fits your space and the way your family gathers.</p></div></div>
     </section>
     <section id="journey" className="commission-journey section-pad" aria-label="The four steps of commissioning furniture">
       <ChapterLabel number="02">From first thought to finished piece</ChapterLabel>
