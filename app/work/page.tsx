@@ -3,13 +3,13 @@ import { breadcrumbSchema, pageMetadata } from "@/lib/site";
 import { JsonLd } from "@/components/json-ld";
 import { pieces } from "@/lib/pieces";
 import { Footer, Header } from "@/components/site-chrome";
-import { CinematicHero } from "@/components/cinematic-hero";
+import { HomeCollectionCarousel } from "@/components/home-collection-carousel";
 import { ChapterLabel, StoryIndex, StoryNext } from "@/components/story-sections";
 
 export const metadata = pageMetadata("/work", "Custom Table Designs | J. K. Oliver Woodworks", "Explore named solid-wood table designs from J. K. Oliver Woodworks in Buda, serving homes across Central Texas.");
 
 export default function Work() {
-  return <><Header overlay /><main id="main-content"><CinematicHero collection />
+  return <><Header overlay /><main id="main-content"><HomeCollectionCarousel />
     <div className="story-page work-page">
       <StoryIndex label="The collection" items={[{ href: "#collection", label: "Selected pieces" }, { href: "#every-piece", label: "What they share" }, { href: "#commission", label: "Your commission" }]} />
       <section id="collection" className="collection-opening section-pad">
