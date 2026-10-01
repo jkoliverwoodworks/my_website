@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { pieces } from "@/lib/pieces";
+import { formatPrice, pieces } from "@/lib/pieces";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 
 export function HomeCollectionCarousel() {
@@ -31,7 +31,7 @@ export function HomeCollectionCarousel() {
 
   useEffect(() => {
     if (!api || userPaused || !pageVisible) return;
-    const timer = window.setInterval(() => api.scrollNext(), 3_000);
+    const timer = window.setInterval(() => api.scrollNext(), 5_000);
     return () => window.clearInterval(timer);
   }, [api, current, userPaused, pageVisible]);
 
@@ -40,12 +40,22 @@ export function HomeCollectionCarousel() {
       <CarouselContent className="home-carousel-track">
         {pieces.map((piece, index) => <CarouselItem className="home-carousel-slide" key={piece.slug}>
           <article className="home-carousel-card">
-            <img src={piece.image} alt={`${piece.name}, a customizable ${piece.material.toLowerCase()} table design`} width="1400" height="1200" fetchPriority={index === 0 ? "high" : "auto"} />
+            <img
+              src={piece.heroImage}
+              srcSet={`${piece.image} 640w, ${piece.heroImage} ${piece.heroWidth}w`}
+              sizes="100vw"
+              alt={`${piece.name}, a ${piece.shape.toLowerCase()} semi-custom dining table`}
+              width={piece.heroWidth}
+              height={piece.heroHeight}
+              fetchPriority={index === 0 ? "high" : "auto"}
+              loading={index === 0 ? "eager" : "lazy"}
+              decoding="async"
+            />
             <div className="home-carousel-shade" />
-            <div className="home-carousel-kicker"><span>Custom furniture · Buda, Texas</span><span>{String(index + 1).padStart(2, "0")} / {String(pieces.length).padStart(2, "0")}</span></div>
+            <div className="home-carousel-kicker"><span>Semi-custom dining tables · Buda, Texas</span><span>{String(index + 1).padStart(2, "0")} / {String(pieces.length).padStart(2, "0")}</span></div>
             <div className="home-carousel-copy">
-              <div><p className="eyebrow light">{piece.material} · Design family</p><h1 id={index === 0 ? "home-collection-title" : undefined}>{piece.name}<br /><em>{piece.character}.</em></h1></div>
-              <div className="home-carousel-aside"><p>{piece.description}</p><Link href={`/work/${piece.slug}`}>Explore this design <span aria-hidden="true">↗</span></Link></div>
+              <div><p className="eyebrow light">The Hill Country Collection · From {formatPrice(piece.price)}</p><h1 id={index === 0 ? "home-collection-title" : undefined}>{piece.name}</h1></div>
+              <div className="home-carousel-aside"><Link href={`/work/${piece.slug}`}>Explore this design <span aria-hidden="true">↗</span></Link></div>
             </div>
           </article>
         </CarouselItem>)}

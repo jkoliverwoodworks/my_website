@@ -53,7 +53,7 @@ The main goal is **qualified commission inquiries**, not raw traffic. A custom-t
 | B | Handmade / solid wood, Texas | handmade dining table Texas; solid wood dining table Texas; Texas made furniture; heirloom dining table | Commercial | `/`, `/craftsmanship` |
 | C | Local maker, Buda / Hays County | custom furniture Buda TX; woodworker Buda TX; furniture maker near me; custom woodworking Kyle / San Marcos | Local / "near me" | `/`, `/maker`, **GBP** (mostly won in the Maps pack) |
 | D | Hill Country towns | custom furniture Dripping Springs; farmhouse table Hill Country; custom table Wimberley | Local / commercial | `/work` + future project case studies |
-| E | Wood species | walnut dining table; white oak dining table; oak and steel dining table; cypress table Texas | Commercial / research | `/work/lineage` (walnut), `/work/elm` (white oak), `/work/foundry` (oak & steel), `/work/cypress`; future species guides |
+| E | Wood species | red oak dining table; pecan dining table; solid hardwood dining table Texas | Commercial / research | `/work`, `/craftsmanship`, and the Hill Country Collection design pages; future species guides |
 | F | Styles | farmhouse dining table; modern dining table solid wood; trestle table; live edge table (only if Jeremy builds these) | Commercial / inspiration | `/work` pieces + future content |
 | G | Cost and planning | how much does a custom dining table cost; custom dining table lead time; custom table vs store bought | Informational, close to buying | `/investment` |
 | H | Process / commissioning | how to commission custom furniture; working with a furniture maker | Informational | `/process` |
@@ -74,16 +74,18 @@ The main goal is **qualified commission inquiries**, not raw traffic. A custom-t
 | --- | --- | --- | --- | --- | --- |
 | `/` | Custom Dining Tables in Austin \| J. K. Oliver Woodworks | Custom dining tables Austin (A) | Handmade solid wood Texas (B); Buda maker (C) | Make sure visible copy says "Buda, Texas" and "Austin & the Hill Country" early. Link to /work pieces by species | Developer |
 | `/work` | Custom Furniture Portfolio | Custom furniture portfolio Austin / Hill Country (D, F) | Species names (E) | Add short captions naming the wood and, once allowed, the general area where each piece lives ("a family home in Dripping Springs") | Developer + Client (details) |
-| `/work/elm` | The Elm \| Bespoke Furniture | White oak dining table (E) | Minimal / modern solid wood table (F) | Add dimensions, seating, finish, lead-time range and more photos when Jeremy provides them. Pages this thin struggle to rank | Developer + Client |
-| `/work/lineage` | The Lineage \| Bespoke Furniture | Walnut dining table (E) | Heirloom dining table Texas (B) | Same as above | Developer + Client |
-| `/work/foundry` | The Foundry \| Bespoke Furniture | Oak and steel dining table (E/F) | Modern industrial dining table Austin | Same as above | Developer + Client |
-| `/work/cypress` | The Cypress \| Bespoke Furniture | Cypress / solid wood table Texas (E) | Hill Country table (D) | Confirm species with Jeremy. The label is currently "Solid wood" | Client confirms; Developer updates |
-| `/work/hearth` | The Hearth \| Bespoke Furniture | Farmhouse / family dining table (F) | Solid wood dining table Texas | Confirm species and style with Jeremy | Client confirms; Developer updates |
-| `/work/gathering` | The Gathering \| Bespoke Furniture | Large dining table for 10–12 / long farmhouse table (F, I) | Extending family table | Confirm size, style and species | Client confirms; Developer updates |
+| `/work/blanco` | The Blanco \| Hill Country Collection | Round metal-pedestal dining table (F) | Semi-custom dining table Texas | Price, standard size, description, image, and Product schema are present | Developer |
+| `/work/pedernales` | The Pedernales \| Hill Country Collection | Curved trestle dining table (F) | Hill Country dining table (D) | Price, standard size, description, image, and Product schema are present | Developer |
+| `/work/san-marcos` | The San Marcos \| Hill Country Collection | Round wood-pedestal dining table (F) | Semi-custom dining table Texas | Price, standard size, description, image, and Product schema are present | Developer |
+| `/work/guadalupe` | The Guadalupe \| Hill Country Collection | Curved pedestal dining table (F) | Transitional dining table Texas | Price, standard size, description, image, and Product schema are present | Developer |
+| `/work/frio` | The Frio \| Hill Country Collection | Farmhouse dining table (F) | Solid hardwood dining table Texas | Price, standard size, description, image, and Product schema are present | Developer |
+| `/work/llano` | The Llano \| Hill Country Collection | Wood and steel dining table (F) | Modern dining table Austin | Price, standard size, description, image, and Product schema are present | Developer |
+| `/work/brazos` | The Brazos \| Hill Country Collection | X-trestle dining table (F) | Handcrafted hardwood table | Price, standard size, description, image, and Product schema are present | Developer |
+| `/work/colorado` | The Colorado \| Hill Country Collection | Four-leg dining table (F) | Versatile hardwood dining table | Price, standard size, description, image, and Product schema are present | Developer |
 | `/craftsmanship` | Solid-Wood Furniture Craftsmanship | Handmade solid wood furniture (B) | Hardwood species, joinery, finishes (E, I) | Good hub for linking to future species and care guides | Developer |
 | `/process` | The Custom Furniture Process | How to commission custom furniture (H) | Custom furniture Austin process | Add realistic timeline ranges once Jeremy confirms them | Developer + Client |
 | `/maker` | Meet Jeremy Oliver, Furniture Maker | Jeremy Oliver furniture maker Buda (C, J) | Woodworker Buda TX | Person schema (in progress). Add real workshop photos. The banker-to-maker story is strong for press and E-E-A-T | Developer + Client (photos, story details) |
-| `/investment` | Custom Furniture Costs & FAQs | Custom dining table cost (G) | Lead times, delivery Austin | FAQPage schema (in progress). Add honest price ranges ("most dining tables start around $X") if Jeremy is comfortable. This is the most-searched question in this category | Client (pricing decision); Developer |
+| `/investment` | Dining Table Pricing & FAQs | Custom dining table cost (G) | Lead times, delivery Austin | Published Hill Country Collection price range, standard assumptions, and FAQPage schema are present | Developer |
 | `/contact` | Start Your Custom Furniture Project | Commission a custom table (conversion) | — | Add phone and service-area text once available. Add conversion tracking (Section 9) | Developer + Client |
 
 ---

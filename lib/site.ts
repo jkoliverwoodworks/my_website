@@ -49,7 +49,7 @@ export const businessSchema = {
     { "@type": "AdministrativeArea", name: "Central Texas" },
   ],
   founder: { "@id": `${siteUrl}/maker#jeremy-oliver` },
-  knowsAbout: ["Custom dining tables", "Solid hardwood furniture", "White oak furniture", "Walnut furniture", "Bespoke furniture design"],
+  knowsAbout: ["Semi-custom dining tables", "Custom furniture", "Solid hardwood furniture", "Red oak furniture", "Pecan furniture"],
 };
 
 export const websiteSchema = {
@@ -93,5 +93,30 @@ export function faqSchema(faqs: readonly (readonly [string, string])[]) {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     mainEntity: faqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })),
+  };
+}
+
+export function productSchema(piece: (typeof pieces)[number]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": `${siteUrl}/work/${piece.slug}#product`,
+    name: piece.name,
+    description: piece.description,
+    image: `${siteUrl}${piece.image}`,
+    category: "Semi-custom dining table",
+    material: "Red oak or pecan solid hardwood",
+    brand: { "@type": "Brand", name: siteName },
+    offers: {
+      "@type": "Offer",
+      url: `${siteUrl}/work/${piece.slug}`,
+      priceCurrency: "USD",
+      price: piece.price,
+      seller: { "@id": `${siteUrl}/#business` },
+    },
+    additionalProperty: [
+      { "@type": "PropertyValue", name: "Standard size", value: piece.standardSize },
+      { "@type": "PropertyValue", name: "Base", value: piece.base },
+    ],
   };
 }

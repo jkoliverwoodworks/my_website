@@ -4,12 +4,12 @@ import type { ReactNode } from "react";
 export function StoryIndex({ label, items }: { label: string; items: { href: string; label: string }[] }) {
   return <nav className="story-index section-pad" aria-label={label}>
     <span className="story-index-label">{label}</span>
-    <div>{items.map((item, index) => <a key={item.href} href={item.href}><span aria-hidden="true">0{index + 1}</span>{item.label}</a>)}</div>
+    <div>{items.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}</div>
   </nav>;
 }
 
-export function ChapterLabel({ number, children }: { number: string; children: ReactNode }) {
-  return <p className="eyebrow story-chapter"><span>{number}</span>{children}</p>;
+export function ChapterLabel({ children }: { number: string; children: ReactNode }) {
+  return <p className="eyebrow story-chapter">{children}</p>;
 }
 
 export function StoryNext({ id, eyebrow, title, description, href, link, image, alt }: {
