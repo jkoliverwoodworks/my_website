@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function MakerNote() {
   return <section className="maker-note section-pad" id="maker-note" aria-labelledby="maker-note-title">
-    <div className="maker-note-heading"><p className="eyebrow">03 / A note from the maker</p><span className="maker-note-location">Buda, Texas <span aria-hidden="true">↗</span></span></div>
+    <div className="maker-note-heading"><p className="eyebrow">A note from the maker</p><span className="maker-note-location">Buda, Texas</span></div>
     <div className="maker-note-title"><h2 id="maker-note-title">A human touch.<br /><em>In every detail.</em></h2><p>One pair of hands.<br /> From the first conversation<br /> to the final finish.</p></div>
     <div className="maker-note-grid">
       <div className="maker-portrait-composition">

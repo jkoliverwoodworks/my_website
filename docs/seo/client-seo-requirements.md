@@ -49,8 +49,8 @@ Please send these to us when you can. The first three matter most, because the r
   - "Before and after": rough lumber → finished table
   - A good photo of you (for the Maker page and Google)
   - Phone photos are fine. Shoot in daylight, turn off the flash, and hold the phone level.
-- [ ] **Details for each table design** (Elm, Lineage, Foundry, Cypress, Hearth, Gathering): wood species, typical sizes, how many people it seats, finish, rough lead time
-- [ ] **Pricing comfort level.** Are you OK sharing a starting price range ("most dining tables start around $___")? People search for this constantly, and it helps filter out poor-fit inquiries.
+- [ ] **Remaining details for each Hill Country Collection design:** estimated seating, available finishes, and rough lead time. Names, descriptions, standard sizes, standard wood choices, prices, and images have been supplied.
+- [x] **Pricing comfort level.** Standard prices and customization assumptions were supplied for the eight Hill Country Collection designs.
 - [ ] **Social media links** (Instagram, Facebook, Pinterest, Houzz, anything you already have)
 - [ ] **Existing reviews or testimonials** (texts, emails or cards from happy clients, with permission to quote them)
 - [ ] **List of past clients** you'd feel comfortable asking for a review (just for you to use; you don't need to send us their details)
@@ -100,12 +100,12 @@ Google needs to confirm you're a real business. Depending on what it offers you,
 ### Step 6 — Fill in everything
 
 - **Description** (up to 750 characters). Something like:
-  > J. K. Oliver Woodworks makes custom solid-wood dining tables and furniture by hand in Buda, Texas. Each piece is built by owner and craftsman Jeremy Oliver in walnut, white oak and other hardwoods, designed around the way your family gathers. We work with homeowners across Austin, Dripping Springs, Wimberley and the Texas Hill Country, from the first conversation to delivery.
+  > J. K. Oliver Woodworks makes semi-custom and completely custom solid-hardwood dining tables in Buda, Texas. Each piece is built by owner and craftsman Jeremy Oliver, beginning with red oak or pecan and designed around the way your family gathers. Jeremy serves homeowners across Austin, Dripping Springs, Wimberley and the Texas Hill Country, from the first conversation to delivery.
 
   (Keep it honest. No links, no prices that could go out of date, no ALL CAPS.)
 - **Hours:** your real hours. If you work by appointment, mark that if the screen offers it.
 - **Services:** e.g. Custom dining tables · Custom furniture · Dining benches · Furniture design consultation · Delivery and installation (only what you really offer)
-- **Products:** add each table design as a product: The Elm, The Lineage, The Foundry, The Cypress, The Hearth, The Gathering. Include a photo, a one-sentence description, "Price on request" or a starting price if you're comfortable, and a link to its page on the website (we'll send you the links).
+- **Products:** add each Hill Country Collection design as a product: The Blanco, The Pedernales, The San Marcos, The Guadalupe, The Frio, The Llano, The Brazos, and The Colorado. Use the supplied photograph, description, standard price, and corresponding design-page link.
 - **Photos:** see the next step.
 - **Add us as a Manager:** in profile settings, look for "People and access" (or similar), add the Moil email we give you, and choose **Manager**.
 
