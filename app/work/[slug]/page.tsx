@@ -29,30 +29,23 @@ export default async function Piece({ params }: { params: Promise<{ slug: string
   const next = pieces[(index + 1) % pieces.length];
 
   return <><Header /><main id="main-content">
-    <section className="product-hero product-hero-simple">
+    <section className="product-hero product-hero-inquiry">
       <div className="product-copy">
         <Link href="/work#collection" className="back-link">← The Hill Country Collection</Link>
         <p className="eyebrow">Semi-custom dining table</p>
         <h1>{piece.name.replace("The ", "")}<span>by J. K. Oliver</span></h1>
         <p className="product-price">From {formatPrice(piece.price)}</p>
-        <a className="button button-dark" href="#inquire">Inquire about this design <span aria-hidden="true">↓</span></a>
-      </div>
-      <figure className="product-image"><img src={piece.heroImage} alt={`${piece.name}, a ${piece.shape.toLowerCase()} dining table with a ${piece.base.toLowerCase()}`} width={piece.heroWidth} height={piece.heroHeight} fetchPriority="high" /></figure>
-    </section>
-
-    <section className="product-inquiry section-pad">
-      <div className="product-summary">
-        <p className="eyebrow">{piece.name}</p>
-        <h2>A starting point<br /><em>made personal.</em></h2>
-        <p>{piece.description}</p>
-        <dl>
+        <p className="product-design-description">{piece.description}</p>
+        <figure className="product-overview-image"><img src={piece.heroImage} alt={`${piece.name}, a ${piece.shape.toLowerCase()} dining table with a ${piece.base.toLowerCase()}`} width={piece.heroWidth} height={piece.heroHeight} fetchPriority="high" /></figure>
+        <details className="product-specs"><summary>Standard dimensions & materials <span aria-hidden="true">+</span></summary><dl>
           <div><dt>Starting price</dt><dd>{formatPrice(piece.price)}</dd></div>
           <div><dt>Standard size</dt><dd>{piece.standardSize}</dd></div>
           <div><dt>Standard wood</dt><dd>{standardPricing.woods}</dd></div>
           <div><dt>Base</dt><dd>{piece.base}</dd></div>
           <div><dt>Made in</dt><dd>Buda, Texas</dd></div>
-        </dl>
+        </dl></details>
         <p className="product-custom-note">{standardPricing.custom}</p>
+        <Link className="text-link" href="/contact">Have a completely custom idea? <span aria-hidden="true">↗</span></Link>
       </div>
       <div id="inquire" className="product-form">
         <p className="eyebrow">Ask Jeremy about this design</p>

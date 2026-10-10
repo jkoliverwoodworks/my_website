@@ -3,18 +3,17 @@ import { breadcrumbSchema, pageMetadata } from "@/lib/site";
 import { JsonLd } from "@/components/json-ld";
 import { collectionIntroduction, formatPrice, pieces, standardPricing } from "@/lib/pieces";
 import { Footer, Header } from "@/components/site-chrome";
-import { HomeCollectionCarousel } from "@/components/home-collection-carousel";
 import { ChapterLabel, StoryIndex, StoryNext } from "@/components/story-sections";
 
 export const metadata = pageMetadata("/work", "Custom Table Designs | J. K. Oliver Woodworks", "Explore named solid-wood table designs from J. K. Oliver Woodworks in Buda, serving homes across Central Texas.");
 
 export default function Work() {
-  return <><Header overlay /><main id="main-content"><HomeCollectionCarousel />
+  return <><Header /><main id="main-content">
     <div className="story-page work-page">
       <StoryIndex label="Explore" items={[{ href: "#collection", label: "The designs" }, { href: "#standard-pricing", label: "Standard pricing" }, { href: "#commission", label: "Fully custom" }]} />
       <section id="collection" className="collection-opening section-pad">
         <ChapterLabel number="01">Semi-custom dining tables</ChapterLabel>
-        <div className="story-intro-grid"><h2>The Hill Country<br /><em>Collection.</em></h2><div><p>{collectionIntroduction}</p><p>Choose the design that feels right, then work directly with Jeremy to tailor the dimensions, hardwood, base finish, and details.</p><p className="collection-facts"><span>{pieces.length} designs</span><span>Made in Buda</span><span>Built one at a time</span></p></div></div>
+        <div className="story-intro-grid"><h1>The Hill Country<br /><em>Collection.</em></h1><div><p>{collectionIntroduction}</p><p>Choose the design that feels right, then work directly with Jeremy to tailor the dimensions, hardwood, base finish, and details.</p><p className="collection-facts"><span>{pieces.length} designs</span><span>Made in Buda</span><span>Built one at a time</span></p></div></div>
       </section>
       <section className="collection-list section-pad" aria-label="The Hill Country Collection">{pieces.map((piece, index) => {
         return <article key={piece.slug} className="collection-piece"><Link href={`/work/${piece.slug}`}>

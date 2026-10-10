@@ -19,13 +19,13 @@ export default function Process() {
     <StoryIndex label="The commissioning journey" items={[{ href: "#approach", label: "The approach" }, { href: "#journey", label: "Four steps" }, { href: "#before-we-begin", label: "Before we begin" }]} />
     <section id="approach" className="story-intro section-pad">
       <ChapterLabel number="01">A personal process</ChapterLabel>
-      <div className="story-intro-grid"><h2>Clear at every step.<br /><em>Personal from the start.</em></h2><div><p>You work directly with Jeremy from the first conversation through the final details, with clear decisions around design, budget, timing, and delivery.</p><p>Bring an idea or begin with one of the named designs. Together, we shape a piece that fits your space and the way your family gathers.</p></div></div>
+      <div className="story-intro-grid"><h2>Clear at every step.<br /><em>Personal from the start.</em></h2><div><p>You work directly with Jeremy from the first conversation through the final details, with clear decisions around design, budget, timing, and delivery.</p><p>Start with a Hill Country Collection design for a semi-custom table, or bring your own idea for a completely custom piece. You and Jeremy shape the dimensions, wood, and details around your home.</p></div></div>
     </section>
     <section id="journey" className="commission-journey section-pad" aria-label="The four steps of commissioning furniture">
       <ChapterLabel number="02">From first thought to finished piece</ChapterLabel>
       {stages.map(stage => <article className="commission-stage" key={stage.number}>
         <figure><div className={`commission-image commission-image-${stage.number}`}><img src={stage.image} alt={stage.alt} width="1400" height="1200" loading="lazy" /></div><figcaption><span>{stage.note}</span><span>J. K. Oliver Woodworks</span></figcaption></figure>
-        <div className="commission-copy"><div className="commission-stage-label"><span className="commission-number">{stage.number}</span><p className="eyebrow">{stage.label}</p></div><h3>{stage.title}<br /><em>{stage.emphasis}</em></h3><p>{stage.text}</p><p>{stage.detail}</p></div>
+        <div className="commission-copy"><div className="commission-stage-label"><p className="eyebrow">{stage.label}</p></div><h3>{stage.title}<br /><em>{stage.emphasis}</em></h3><p>{stage.text}</p><p>{stage.detail}</p></div>
       </article>)}
     </section>
     <section id="before-we-begin" className="commission-preparation section-pad">

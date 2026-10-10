@@ -12,12 +12,12 @@ export default function Craftsmanship() {
     <StoryIndex label="An appreciation of craft" items={[{ href: "#materials", label: "The materials" }, { href: "#details", label: "The details" }, { href: "#living-with-wood", label: "Life with wood" }]} />
     <section id="materials" className="material-story section-pad">
       <ChapterLabel number="01">It begins with the wood</ChapterLabel>
-      <div className="story-intro-grid"><h2>Nature gives it character.<br /><em>We give it a place.</em></h2><div><p>The grain, color, and natural variation of real hardwood are part of the design. Each board brings something individual to the finished piece.</p><p>Choosing a wood is about more than a color. It is about the atmosphere you want to create, and the materials you want to live with.</p></div></div>
+      <div className="story-intro-grid"><h2>Nature gives it character.<br /><em>Jeremy gives it a place.</em></h2><div><p>The grain, color, and natural variation of real hardwood are part of the design. Each board brings something individual to the finished piece.</p><p>Choosing a wood is about more than a color. It is about the atmosphere you want to create, and the materials you want to live with.</p></div></div>
       <div className="material-gallery">
         <figure><img src="/client-assets/hill-country-collection/frio.png" alt="The Frio solid-hardwood dining table" width="640" height="640" loading="lazy" /><figcaption><div><span className="eyebrow">Standard hardwood choice</span><h3>Red oak</h3></div><Link href="/work/frio" aria-label="Explore The Frio">↗</Link><p>Visible grain and a familiar warmth.<br />Available across the collection.</p></figcaption></figure>
         <figure><img src="/client-assets/hill-country-collection/pedernales.jpeg" alt="The Pedernales solid-hardwood trestle table" width="640" height="586" loading="lazy" /><figcaption><div><span className="eyebrow">Standard hardwood choice</span><h3>Pecan</h3></div><Link href="/work/pedernales" aria-label="Explore The Pedernales">↗</Link><p>Natural variation and distinctly Texas character.<br />Available across the collection.</p></figcaption></figure>
       </div>
-      <p className="material-footnote">A starting point for the conversation. We’ll explore the wood and finish that suit your piece.</p>
+      <p className="material-footnote">A starting point for the conversation. Jeremy will help you explore the wood and finish that suit your piece.</p>
     </section>
     <section id="details" className="craft-detail-story section-pad">
       <ChapterLabel number="02">The details that make the difference</ChapterLabel>

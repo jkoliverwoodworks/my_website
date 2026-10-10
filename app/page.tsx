@@ -9,7 +9,7 @@ const featuredWork = pieces.slice(0, 3);
 export default function Home() {
   return <><Header overlay /><main id="main-content">
     <HomeCollectionCarousel />
-    <div className="values-strip section-pad"><span>Solid hardwood</span><span>Made to your dimensions</span><span>One-year warranty</span><span>Central Texas roots</span></div>
+    <div className="values-strip section-pad"><span>Solid hardwood</span><span>Made to your dimensions</span><span>One-year warranty</span><span>Made in Buda, Texas</span></div>
     <section id="our-approach" className="intro section-pad">
       <p className="eyebrow">The art of living with wood</p>
       <div className="intro-grid"><h2>A place to gather.<br />A story to <em>grow into.</em></h2><div><p>The slow Sunday mornings. The extra chair at Thanksgiving. The conversations that carry on long after dinner.</p><p>Begin with a semi-custom design from the Hill Country Collection, or bring Jeremy an idea for a completely custom piece. Every table is made in Buda from solid hardwood and shaped around your home.</p><Link className="text-link" href="/work">Explore the collection <span aria-hidden="true">↗</span></Link><br /><Link className="text-link" href="/contact">Discuss a custom commission <span aria-hidden="true">↗</span></Link></div></div>
