@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { formatPrice, pieces } from "@/lib/pieces";
+import { formatPrice } from "@/lib/pieces";
+import type { PublicPiece } from "@/lib/cms-model";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 
-export function HomeCollectionCarousel() {
+export function HomeCollectionCarousel({ pieces }: { pieces: PublicPiece[] }) {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [userPaused, setUserPaused] = useState(false);
@@ -35,6 +36,7 @@ export function HomeCollectionCarousel() {
     return () => window.clearInterval(timer);
   }, [api, current, userPaused, pageVisible]);
 
+  if (!pieces.length) return <section className="intro section-pad"><h1>Made for your home.</h1><p>The collection is being updated. <Link href="/contact">Discuss your idea with Jeremy ↗</Link></p></section>;
   return <section className="home-collection" aria-labelledby="home-collection-title">
     <Carousel setApi={setApi} opts={{ loop: true }} className="home-carousel">
       <CarouselContent className="home-carousel-track">
@@ -44,7 +46,7 @@ export function HomeCollectionCarousel() {
               src={piece.heroImage}
               srcSet={`${piece.image} 640w, ${piece.heroImage} ${piece.heroWidth}w`}
               sizes="100vw"
-              alt={`${piece.name}, a ${piece.shape.toLowerCase()} semi-custom dining table`}
+              alt={piece.imageAlt}
               width={piece.heroWidth}
               height={piece.heroHeight}
               fetchPriority={index === 0 ? "high" : "auto"}

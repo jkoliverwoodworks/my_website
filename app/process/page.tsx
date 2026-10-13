@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getSiteContent } from "@/lib/cms-content";
 import { breadcrumbSchema, pageMetadata } from "@/lib/site";
 import { JsonLd } from "@/components/json-ld";
 import { Footer, Header, PageHero } from "@/components/site-chrome";
@@ -13,13 +14,14 @@ const stages = [
   { number: "04", label: "The homecoming", title: "Made by hand.", emphasis: "Made part of home.", text: "Once your piece is finished, Jeremy coordinates the details of bringing it home. Then it is yours to gather around, live with, and make memories beside.", detail: "Delivery arrangements and care are part of the conversation, so you know what to expect as your piece settles in.", note: "The beginning of its story", image: "/client-assets/hill-country-collection/colorado.jpeg", alt: "The Colorado dining table in a light-filled home" },
 ];
 
-export default function Process() {
+export default async function Process() {
+  const { pages: { process: copy } } = await getSiteContent();
   return <><Header /><main id="main-content" className="story-page process-page">
-    <PageHero eyebrow="The process" title={<>Your idea, shaped<br /><em>with confidence.</em></>} intro="A clear, collaborative path from the first conversation to a finished piece made for your home." image="/client-assets/hill-country-collection/hero/colorado-hero.png" />
+    <PageHero eyebrow="The process" title={<>Your idea, shaped<br /><em>with confidence.</em></>} intro={copy.introduction} image={copy.image} />
     <StoryIndex label="The commissioning journey" items={[{ href: "#approach", label: "The approach" }, { href: "#journey", label: "Four steps" }, { href: "#before-we-begin", label: "Before we begin" }]} />
     <section id="approach" className="story-intro section-pad">
       <ChapterLabel number="01">A personal process</ChapterLabel>
-      <div className="story-intro-grid"><h2>Clear at every step.<br /><em>Personal from the start.</em></h2><div><p>You work directly with Jeremy from the first conversation through the final details, with clear decisions around design, budget, timing, and delivery.</p><p>Start with a Hill Country Collection design for a semi-custom table, or bring your own idea for a completely custom piece. You and Jeremy shape the dimensions, wood, and details around your home.</p></div></div>
+      <div className="story-intro-grid"><h2>Clear at every step.<br /><em>Personal from the start.</em></h2><div><p>{copy.approach}</p><p>{copy.offering}</p></div></div>
     </section>
     <section id="journey" className="commission-journey section-pad" aria-label="The four steps of commissioning furniture">
       <ChapterLabel number="02">From first thought to finished piece</ChapterLabel>

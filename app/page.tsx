@@ -2,22 +2,24 @@ import Link from "next/link";
 import { MakerNote } from "@/components/maker-note";
 import { HomeCollectionCarousel } from "@/components/home-collection-carousel";
 import { Footer, Header } from "@/components/site-chrome";
-import { formatPrice, pieces } from "@/lib/pieces";
+import { formatPrice } from "@/lib/pieces";
+import { getDesigns, getSiteContent } from "@/lib/cms-content";
 
-const featuredWork = pieces.slice(0, 3);
 
-export default function Home() {
+export default async function Home() {
+  const [pieces, content] = await Promise.all([getDesigns(), getSiteContent()]);
+  const featuredWork = pieces.filter(piece => piece.featured).slice(0, 3);
   return <><Header overlay /><main id="main-content">
-    <HomeCollectionCarousel />
+    <HomeCollectionCarousel pieces={pieces} />
     <div className="values-strip section-pad"><span>Solid hardwood</span><span>Made to your dimensions</span><span>One-year warranty</span><span>Made in Buda, Texas</span></div>
     <section id="our-approach" className="intro section-pad">
       <p className="eyebrow">The art of living with wood</p>
-      <div className="intro-grid"><h2>A place to gather.<br />A story to <em>grow into.</em></h2><div><p>The slow Sunday mornings. The extra chair at Thanksgiving. The conversations that carry on long after dinner.</p><p>Begin with a semi-custom design from the Hill Country Collection, or bring Jeremy an idea for a completely custom piece. Every table is made in Buda from solid hardwood and shaped around your home.</p><Link className="text-link" href="/work">Explore the collection <span aria-hidden="true">↗</span></Link><br /><Link className="text-link" href="/contact">Discuss a custom commission <span aria-hidden="true">↗</span></Link></div></div>
+      <div className="intro-grid"><h2>A place to gather.<br />A story to <em>grow into.</em></h2><div><p>{content.homeIntroduction}</p><p>{content.homeOffering}</p><Link className="text-link" href="/work">Explore the collection <span aria-hidden="true">↗</span></Link><br /><Link className="text-link" href="/contact">Discuss a custom commission <span aria-hidden="true">↗</span></Link></div></div>
     </section>
     <section className="signature-work section-pad">
-      <div className="section-heading"><div><p className="eyebrow">The Hill Country Collection</p><h2>Named for Texas rivers.<br /><em>Made for your home.</em></h2></div><Link className="text-link" href="/work">View all eight designs <span aria-hidden="true">↗</span></Link></div>
+      <div className="section-heading"><div><p className="eyebrow">The Hill Country Collection</p><h2>Named for Texas rivers.<br /><em>Made for your home.</em></h2></div><Link className="text-link" href="/work">View all {pieces.length} designs <span aria-hidden="true">↗</span></Link></div>
       <div className="work-grid">{featuredWork.map((item) => <article className="work-card" key={item.name}><Link href={`/work/${item.slug}`} aria-label={`Explore ${item.name}`}><div className="work-image"><img src={item.image} alt={`${item.name} semi-custom dining table`} width="640" height="586" loading="lazy" /><span className="round-arrow" aria-hidden="true">↗</span></div><div className="work-caption"><div><h3>{item.name}</h3><p>From {formatPrice(item.price)} · {item.base}</p></div></div></Link></article>)}</div>
-      <p className="collection-note">Choose a design, then tailor the dimensions, hardwood, base finish, and details to your home.</p>
+      <p className="collection-note">{content.collectionGuidance}</p>
     </section>
     <section className="craft-section">
       <div className="craft-photo"><img src="/heritage-detail.jpg" alt="The natural grain and solid-wood construction of a dining table" width="1402" height="1122" loading="lazy" /></div>

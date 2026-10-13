@@ -96,7 +96,7 @@ export function faqSchema(faqs: readonly (readonly [string, string])[]) {
   };
 }
 
-export function productSchema(piece: (typeof pieces)[number]) {
+export function productSchema(piece: { slug: string; name: string; description: string; image: string; price: number; standardSize: string; base: string }) {
   return {
     "@context": "https://schema.org",
     "@type": "Product",

@@ -1,6 +1,6 @@
 # vinext-starter
 
-A clean full-stack starter running on [vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and Drizzle support.
+A furniture website running on [vinext](https://github.com/cloudflare/vinext), with a custom password-protected Git-backed CMS at `/studio`. See [CMS setup](docs/cms-setup.md) for repository connection, credentials, publishing, and owner access.
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ For browser QA on managed Linux, use `sites-preview start`. The project's dev sc
 
 The portable profile simulates ChatGPT sign-in only for loopback development requests. Visit `/signin-with-chatgpt?return_to=/` to sign in as `local_seedy` (`seedy@sites.test`, display name `Seedy`) and `/signout-with-chatgpt?return_to=/` to sign out. The development cookie preserves that identity across server restarts. Mock auth is disabled in the managed-linux profile and is not included in production builds; hosted authentication remains dispatch-owned.
 
-The Worker uses `vinext/server/fetch-handler`, including Vinext's config-aware image handling. After building, `npm start` runs that Worker locally through Wrangler on `127.0.0.1`, sharing `.wrangler/state` with dev preview and local D1 migrations; it does not deploy the site or simulate sign-in. Use the URL printed by the server. Pass `npm start -- --port <port>` to select a different built-preview port.
+The Worker uses `vinext/server/fetch-handler`, including Vinext's config-aware image handling. After building, `npm start` runs that Worker locally through Wrangler on `127.0.0.1`; it does not deploy the site or simulate sign-in. CMS data and uploads persist in the configured GitHub repository, not local Wrangler state; public pages use the snapshot included in their deployment. Use the URL printed by the server. Pass `npm start -- --port <port>` to select a different built-preview port.
 
 Local previews use Miniflare's placeholder `Request.cf` metadata without a network lookup. Set `CLOUDFLARE_CF_FETCH_ENABLED=true` to opt into fetching preview metadata; this setting does not change hosted request metadata.
 
@@ -40,13 +40,13 @@ Local tool usage metrics are disabled by default. Set `WRANGLER_SEND_METRICS=tru
 
 - edit site code under `app/`
 - `app/chatgpt-auth.ts` provides optional dispatch-owned ChatGPT sign-in helpers
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/index.ts` reads the D1 binding from the Cloudflare Worker environment
-- `db/schema.ts` starts intentionally empty
-- `@cloudflare/workers-types` provides Worker types; `cloudflare-env.d.ts` declares optional `DB`/`BUCKET` bindings—update these declarations if binding names change
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
+- `.openai/hosting.json` retains the Site identity; unused native-storage bindings remain null
+- `vite.config.ts` preserves the existing Worker-based local preview without database/storage bindings
+- `lib/studio-server.ts` provides server-only password/session and repository configuration
+- `lib/studio-git.ts` writes atomic content/image commits without force-pushing
+- `content/site.json` is the deployed content snapshot; uploaded assets live under `public/media/`
+- `/studio/preview` shows the read-only editor design before configuration
+- `@cloudflare/workers-types` provides preview runtime types, not a CMS database
 
 ## Workspace Auth Headers
 
@@ -98,23 +98,20 @@ SIWC establishes identity only; it does not prove workspace membership. Use the 
 
 Use SIWC for account pages, user-specific dashboards, saved records, and write actions tied to the current ChatGPT user. Leave public content anonymous.
 
-## Local D1 migrations
+## CMS content and image storage
 
-For a D1-backed local preview, generate SQL with `npm run db:generate`. Build once through the Sites skill's build entrypoint (or `npm run build` for standalone use) to generate `dist/server/wrangler.json`, rebuilding if bindings change. From the project root, apply each pending migration in order:
-
-```sh
-node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0000_example.sql
-```
-
-Replace the filename with the pending migration and `DB` with your D1 binding name if different. Use `.wrangler/state`, not `.wrangler/state/v3`; Wrangler adds the versioned directories. Do not replay migrations already applied locally. This updates only the preview database; publishing applies production migrations separately.
+The studio saves content and optimized images to a private GitHub repository. No CMS database or external upload provider is required. Public pages do not query GitHub: they use the content/assets included in each deployment. Each Save & publish queues a connected Git deployment; changes appear only after it succeeds. See [CMS setup](docs/cms-setup.md) before connecting credentials. Developers must preserve/pull the latest CMS commits before deploying code changes.
 
 ## Diagnostic Commands
 
 - `npm run install:ci`: perform the one locked dependency install
 - `npm run dev`: start the Vite/Vinext development server
 - `npm run build`: build the deployable Sites artifact
-- `npm run start`: preview the built Worker locally with D1/R2 support
-- `npm run db:generate`: generate Drizzle migrations after schema changes
+- `npm run start`: preview the built Worker locally
+- `npm run studio:password-hash`: generate a salted password hash from stdin (owner-run)
+- `npm run test:cms`: validate the CMS content model
+- `npm run test:cms:http`: verify access-control checks against the local preview
+- `npm run vercel-build`: build the Next.js deployment for Vercel
 
 When using the Sites plugin, follow its skill instructions for installation, builds, and publishing. These npm commands remain available for standalone use.
 
@@ -123,4 +120,4 @@ The portable build runs Vinext directly without a host `timeout` command. The ma
 ## Learn More
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+- [Git-backed studio setup](docs/cms-setup.md)
