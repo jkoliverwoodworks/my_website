@@ -36,12 +36,12 @@ Leave the origin empty for localhost. In production set the exact HTTPS origin w
 
 ### Set the password
 
-Use a unique password of at least 16 characters. The helper reads it from standard input and outputs a salted PBKDF2-SHA256 hash with 600,000 iterations. It does not save the plaintext password or create a credential automatically.
+Use a unique password of at least 8 characters. The helper reads it from standard input and outputs a salted PBKDF2-SHA256 hash with 600,000 iterations. It does not save the plaintext password or create a credential automatically.
 
 On this macOS/zsh environment, run this yourself in a private terminal. Password entry is hidden; it does not enter shell history:
 
 ```zsh
-read -s "studio_password?Choose a unique studio password (16+ characters): "
+read -s "studio_password?Choose a unique studio password (8+ characters): "
 printf '\\n'
 printf '%s' "$studio_password" | npm run --silent studio:password-hash
 unset studio_password
