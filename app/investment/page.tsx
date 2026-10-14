@@ -2,6 +2,7 @@ import Link from "next/link";
 import { JsonLd } from "@/components/json-ld";
 import { Footer, Header, PageHero } from "@/components/site-chrome";
 import { formatPrice } from "@/lib/pieces";
+import { promotionalPrice, promotionIsActive } from "@/lib/cms-model";
 import { getDesigns, getSiteContent } from "@/lib/cms-content";
 import { breadcrumbSchema, faqSchema, pageMetadata } from "@/lib/site";
 
@@ -10,9 +11,10 @@ export const metadata = pageMetadata("/investment", "Dining Table Pricing & FAQs
 export default async function Investment() {
   const [pieces, content] = await Promise.all([getDesigns(), getSiteContent()]);
   const standardPricing = content.pricing;
-  const range = pieces.length ? `${formatPrice(Math.min(...pieces.map(p => p.price)))} to ${formatPrice(Math.max(...pieces.map(p => p.price)))}` : "a price confirmed directly with Jeremy";
+  const displayPrices = pieces.map(piece => promotionalPrice(piece.price, content.promotion));
+  const range = pieces.length ? `${formatPrice(Math.min(...displayPrices))} to ${formatPrice(Math.max(...displayPrices))}` : "a price confirmed directly with Jeremy";
   const faqs: [string, string][] = [
-    ["What does a Hill Country Collection table cost?", pieces.length ? `Standard designs currently range from ${range}. Each design page lists its starting price. ${standardPricing.custom}` : "Ask Jeremy about current designs and pricing."],
+    ["What does a Hill Country Collection table cost?", pieces.length ? `${promotionIsActive(content.promotion) ? `${content.promotion.name} pricing` : "Standard designs"} currently ranges from ${range}. Each design page lists its starting price. ${standardPricing.custom}` : "Ask Jeremy about current designs and pricing."],
     ...content.faqs.map(({ question, answer }) => [question, answer] as [string, string]),
   ];
   return <><Header /><main id="main-content">

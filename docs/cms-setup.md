@@ -67,12 +67,13 @@ Use a hosting plan licensed for a commercial client site; Vercel Hobby is restri
 
 ## Editing
 
-- Designs: Essentials contains the name, description and starting price. Images, Details & SEO, and Publishing have their own tabs. Switching design tabs preserves the draft; Save & publish validates and saves the entire design.
+- Designs: add new designs, edit existing designs, or remove them from the public website by archiving them. Essentials contains the name, description and starting price. Images, Details & SEO, and Publishing have their own tabs. Image upload now lives directly in the design’s Images tab. Switching design tabs preserves the draft; Review & save validates the entire design and opens a confirmation modal before publishing.
+- Sales: schedule a site-wide percentage promotion with a campaign name, short message, start date, and end date. One promotion automatically updates the displayed prices for every published design while preserving the original prices. The public offer bar and discounted prices turn on and off from the configured Central Texas dates.
 - Existing URL slugs are locked. New published designs are included in the next deployment.
 - Page content: separate Home, Work, Meet the Maker, Craftsmanship, Process, Investment, and Contact tabs expose the key copy and relevant banner photographs. Biography fields use recognizable section names. Content previews are simplified, not full-page renders. Work collection guidance is also used on Home.
 - Pricing & FAQs: separate Pricing and FAQs tabs with content previews. FAQ editing shows one question at a time. Standard configuration text and FAQ entries are editable; the public price range is calculated from published designs.
 - Switching page tabs, pricing/FAQ tabs, or main sections prompts before discarding unsaved content changes.
-- Media: JPEG/PNG/WebP input under 20 MB. The browser decodes and resizes to a maximum 2400-pixel long edge, then encodes WebP at 82% quality where supported. The server accepts only matching raster signatures/MIME and at most 1.5 MB per file.
+- Images: JPEG/PNG/WebP input under 20 MB. Uploads are available inside each design’s Images tab. The browser decodes and resizes to a maximum 2400-pixel long edge, then encodes WebP at 82% quality where supported. The server accepts only matching raster signatures/MIME and at most 1.5 MB per file.
 - Library pickers let the client choose existing design/maker photos or new uploads. Images need a short accessibility description.
 - Archive rather than delete designs. Replaced images remain in Git for recovery.
 - Static page layouts, secondary copy not exposed in the page tabs, generic SEO/contact details and the inquiry mailbox remain code-controlled.

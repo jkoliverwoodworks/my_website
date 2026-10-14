@@ -2,7 +2,7 @@ import Link from "next/link";
 import { MakerNote } from "@/components/maker-note";
 import { HomeCollectionCarousel } from "@/components/home-collection-carousel";
 import { Footer, Header } from "@/components/site-chrome";
-import { formatPrice } from "@/lib/pieces";
+import { PromotionPrice } from "@/components/promotion-price";
 import { getDesigns, getSiteContent } from "@/lib/cms-content";
 
 
@@ -10,7 +10,7 @@ export default async function Home() {
   const [pieces, content] = await Promise.all([getDesigns(), getSiteContent()]);
   const featuredWork = pieces.filter(piece => piece.featured).slice(0, 3);
   return <><Header overlay /><main id="main-content">
-    <HomeCollectionCarousel pieces={pieces} />
+    <HomeCollectionCarousel pieces={pieces} promotion={content.promotion} />
     <div className="values-strip section-pad"><span>Solid hardwood</span><span>Made to your dimensions</span><span>One-year warranty</span><span>Made in Buda, Texas</span></div>
     <section id="our-approach" className="intro section-pad">
       <p className="eyebrow">The art of living with wood</p>
@@ -18,7 +18,7 @@ export default async function Home() {
     </section>
     <section className="signature-work section-pad">
       <div className="section-heading"><div><p className="eyebrow">The Hill Country Collection</p><h2>Named for Texas rivers.<br /><em>Made for your home.</em></h2></div><Link className="text-link" href="/work">View all {pieces.length} designs <span aria-hidden="true">↗</span></Link></div>
-      <div className="work-grid">{featuredWork.map((item) => <article className="work-card" key={item.name}><Link href={`/work/${item.slug}`} aria-label={`Explore ${item.name}`}><div className="work-image"><img src={item.image} alt={`${item.name} semi-custom dining table`} width="640" height="586" loading="lazy" /><span className="round-arrow" aria-hidden="true">↗</span></div><div className="work-caption"><div><h3>{item.name}</h3><p>From {formatPrice(item.price)} · {item.base}</p></div></div></Link></article>)}</div>
+      <div className="work-grid">{featuredWork.map((item) => <article className="work-card" key={item.name}><Link href={`/work/${item.slug}`} aria-label={`Explore ${item.name}`}><div className="work-image"><img src={item.image} alt={`${item.name} semi-custom dining table`} width="640" height="586" loading="lazy" /><span className="round-arrow" aria-hidden="true">↗</span></div><div className="work-caption"><div><h3>{item.name}</h3><p><PromotionPrice price={item.price} promotion={content.promotion} /> · {item.base}</p></div></div></Link></article>)}</div>
       <p className="collection-note">{content.collectionGuidance}</p>
     </section>
     <section className="craft-section">
