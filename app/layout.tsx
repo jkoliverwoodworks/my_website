@@ -4,6 +4,8 @@ import { JsonLd } from "@/components/json-ld";
 import "./globals.css";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { RouteScrollManager } from "@/components/route-scroll-manager";
+import { PromotionBar } from "@/components/promotion-bar";
+import { getSiteContent } from "@/lib/cms-content";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -14,6 +16,7 @@ export const metadata: Metadata = {
 };
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#f6f3ed" };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><head><link rel="preload" href="/inter.ttf" as="font" type="font/ttf" crossOrigin="anonymous" /></head><body>{children}<RouteScrollManager /><ScrollReveal /><JsonLd data={[businessSchema, websiteSchema]} /></body></html>;
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const { promotion } = await getSiteContent();
+  return <html lang="en"><head><link rel="preload" href="/inter.ttf" as="font" type="font/ttf" crossOrigin="anonymous" /></head><body><PromotionBar promotion={promotion} />{children}<RouteScrollManager /><ScrollReveal /><JsonLd data={[businessSchema, websiteSchema]} /></body></html>;
 }

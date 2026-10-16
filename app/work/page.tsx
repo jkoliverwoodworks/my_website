@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { breadcrumbSchema, pageMetadata } from "@/lib/site";
 import { JsonLd } from "@/components/json-ld";
-import { formatPrice } from "@/lib/pieces";
+import { PromotionPrice } from "@/components/promotion-price";
 import { getDesigns, getSiteContent } from "@/lib/cms-content";
 import { Footer, Header } from "@/components/site-chrome";
 import { ChapterLabel, StoryIndex, StoryNext } from "@/components/story-sections";
@@ -22,7 +22,7 @@ export default async function Work() {
         return <article key={piece.slug} className="collection-piece"><Link href={`/work/${piece.slug}`}>
           <div className="collection-piece-image"><img loading={index < 2 ? "eager" : "lazy"} width="640" height="586" src={piece.image} alt={piece.imageAlt} /><span className="collection-piece-arrow" aria-hidden="true">↗</span></div>
           <div className="collection-piece-copy">
-            <p className="eyebrow">From {formatPrice(piece.price)} · {piece.shape}</p>
+            <p className="eyebrow"><PromotionPrice price={piece.price} promotion={content.promotion} /> · {piece.shape}</p>
             <h3>{piece.name}</h3>
             <p className="collection-piece-description">{piece.description}</p>
             <p className="collection-piece-fact">Standard size: {piece.standardSize}</p>

@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { formatPrice } from "@/lib/pieces";
 import type { PublicPiece } from "@/lib/cms-model";
+import type { Promotion } from "@/lib/cms-model";
+import { PromotionPrice } from "@/components/promotion-price";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 
-export function HomeCollectionCarousel({ pieces }: { pieces: PublicPiece[] }) {
+export function HomeCollectionCarousel({ pieces, promotion }: { pieces: PublicPiece[]; promotion: Promotion }) {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [userPaused, setUserPaused] = useState(false);
@@ -56,7 +57,7 @@ export function HomeCollectionCarousel({ pieces }: { pieces: PublicPiece[] }) {
             <div className="home-carousel-shade" />
             <div className="home-carousel-kicker"><span>Semi-custom dining tables · Buda, Texas</span><span>{String(index + 1).padStart(2, "0")} / {String(pieces.length).padStart(2, "0")}</span></div>
             <div className="home-carousel-copy">
-              <div><p className="eyebrow light">The Hill Country Collection · From {formatPrice(piece.price)}</p><h1 id={index === 0 ? "home-collection-title" : undefined}>{piece.name}</h1></div>
+              <div><p className="eyebrow light">The Hill Country Collection · <PromotionPrice price={piece.price} promotion={promotion} /></p><h1 id={index === 0 ? "home-collection-title" : undefined}>{piece.name}</h1></div>
               <div className="home-carousel-aside"><Link href={`/work/${piece.slug}`}>Explore this design <span aria-hidden="true">↗</span></Link></div>
             </div>
           </article>

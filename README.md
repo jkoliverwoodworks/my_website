@@ -1,6 +1,6 @@
 # vinext-starter
 
-A furniture website running on [vinext](https://github.com/cloudflare/vinext), with a custom password-protected Git-backed CMS at `/studio`. See [CMS setup](docs/cms-setup.md) for repository connection, credentials, publishing, and owner access. 
+A furniture website running on [vinext](https://github.com/cloudflare/vinext), with a custom password-protected Git-backed CMS at `/studio`. See [CMS setup](docs/cms-setup.md) for repository connection, credentials, publishing, and owner access.
 
 ## Prerequisites
 
