@@ -96,7 +96,7 @@ export function faqSchema(faqs: readonly (readonly [string, string])[]) {
   };
 }
 
-export function productSchema(piece: { slug: string; name: string; description: string; image: string; price: number; standardSize: string; base: string }) {
+export function productSchema(piece: { slug: string; name: string; description: string; image: string; standardSize: string; base: string }) {
   return {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -107,13 +107,6 @@ export function productSchema(piece: { slug: string; name: string; description: 
     category: "Semi-custom dining table",
     material: "Red oak or pecan solid hardwood",
     brand: { "@type": "Brand", name: siteName },
-    offers: {
-      "@type": "Offer",
-      url: `${siteUrl}/work/${piece.slug}`,
-      priceCurrency: "USD",
-      price: piece.price,
-      seller: { "@id": `${siteUrl}/#business` },
-    },
     additionalProperty: [
       { "@type": "PropertyValue", name: "Standard size", value: piece.standardSize },
       { "@type": "PropertyValue", name: "Base", value: piece.base },

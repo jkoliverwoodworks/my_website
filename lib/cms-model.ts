@@ -37,7 +37,12 @@ export const contentSchema = z.object({
     investment: z.object({ introduction: copy, image: imageReference }).strict(),
     contact: z.object({ introduction: copy, inquiryGuidance: copy }).strict(),
   }).strict().default(defaultPageCopy),
-  pricing: z.object({ rectangular: copy, round: copy, woods: copy, construction: copy, base: copy, upgrade: copy, custom: copy }).strict(),
+  pricing: z.object({
+    range: copy.default(standardPricing.range),
+    qualification: copy.default(standardPricing.qualification),
+    madeToOrder: copy.default(standardPricing.madeToOrder),
+    rectangular: copy, round: copy, woods: copy, construction: copy, base: copy, upgrade: copy, custom: copy,
+  }).strict(),
   faqs: z.array(z.object({ question: copy, answer: copy }).strict()).max(30),
 }).strict();
 export type SiteContent = z.infer<typeof contentSchema>;
@@ -61,7 +66,7 @@ export const defaultContent: SiteContent = {
   ],
   pricing: { ...standardPricing },
   faqs: [
-    { question: "What is included in standard pricing?", answer: `Standard pricing includes solid-hardwood construction in red oak or pecan. Rectangular tables are ${standardPricing.rectangular}; round tables are ${standardPricing.round}. Wood bases are painted as standard.` },
+    { question: "What materials and sizes can I choose?", answer: `Collection designs begin with solid-hardwood construction in red oak or pecan. Standard rectangular tables are ${standardPricing.rectangular}; round tables are ${standardPricing.round}. Other dimensions, hardwoods, and finishes can be discussed with Jeremy as part of your personalized quote.` },
     { question: "Can I choose a natural-wood base?", answer: "Yes. A matching natural-wood base is available as an upgrade on applicable designs. Jeremy will confirm the wood, finish, and final price with you." },
     { question: "Can Jeremy build something outside the collection?", answer: "Yes. The Hill Country Collection offers semi-custom starting points, while a completely custom commission can begin with a room, a sketch, a saved photograph, or an original idea." },
     { question: "How long does a custom piece take?", answer: "Every piece is made to order. Lead times vary with the design and Jeremy’s current workshop schedule; you will receive a current estimate during your consultation." },

@@ -2,13 +2,16 @@ export const collectionIntroduction =
   "Named for the rivers that run through Central Texas, each table in the Hill Country Collection is designed to bring families back to the table and built to become part of the home for years to come.";
 
 export const standardPricing = {
+  range: "Most of our dining tables range from $2,800 to $4,500, depending on the design, dimensions, and wood species selected.",
+  qualification: "Larger tables, premium hardwoods, and specialized designs may exceed this range.",
+  madeToOrder: "Every table is made to order, allowing us to create a piece that fits your home, your family, and the way you gather.",
   rectangular: '36" × 72" × 1.25" thick top',
   round: '42" diameter × 1.25" thick top',
   woods: "Red oak or pecan",
   construction: "Solid hardwood",
   base: "Painted wood bases are standard",
   upgrade: "Matching natural-wood bases are available as an upgrade",
-  custom: "Larger sizes, premium hardwood species, and other customizations are priced separately.",
+  custom: "Choose your dimensions, hardwood, and finish. Jeremy confirms your personalized quote before work begins.",
 } as const;
 
 export const pieces = [

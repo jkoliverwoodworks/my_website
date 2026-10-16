@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { formatPrice } from "@/lib/pieces";
 import type { PublicPiece } from "@/lib/cms-model";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 
@@ -56,7 +55,7 @@ export function HomeCollectionCarousel({ pieces }: { pieces: PublicPiece[] }) {
             <div className="home-carousel-shade" />
             <div className="home-carousel-kicker"><span>Semi-custom dining tables · Buda, Texas</span><span>{String(index + 1).padStart(2, "0")} / {String(pieces.length).padStart(2, "0")}</span></div>
             <div className="home-carousel-copy">
-              <div><p className="eyebrow light">The Hill Country Collection · From {formatPrice(piece.price)}</p><h1 id={index === 0 ? "home-collection-title" : undefined}>{piece.name}</h1></div>
+              <div><p className="eyebrow light">The Hill Country Collection · Made to order</p><h1 id={index === 0 ? "home-collection-title" : undefined}>{piece.name}</h1></div>
               <div className="home-carousel-aside"><Link href={`/work/${piece.slug}`}>Explore this design <span aria-hidden="true">↗</span></Link></div>
             </div>
           </article>

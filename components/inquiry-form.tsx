@@ -71,7 +71,7 @@ export function InquiryForm({ piece = "" }: { piece?: string }) {
     <label>Phone number (optional)<input type="tel" name="phone" autoComplete="tel" maxLength={40} /></label>
     <label>What do you have in mind? (optional)<textarea name="notes" rows={5} maxLength={1800} placeholder="Your room, preferred size, wood, timing, or simply the beginning of an idea." /></label>
     <label className="website-field" aria-hidden="true">Website<input name="website" autoComplete="off" tabIndex={-1} /></label>
-    <button className="button button-dark" type="submit" disabled={state === "sending"}>{state === "sending" ? "Sending…" : "Send inquiry"} <span aria-hidden="true">↗</span></button>
+    <button className="button button-dark" type="submit" disabled={state === "sending"}>{state === "sending" ? "Sending…" : piece ? "Request a quote for this design" : "Send inquiry"} <span aria-hidden="true">↗</span></button>
     <p className="form-note">Your details are used only to respond to this project inquiry.</p>
     {state === "fallback" && <div className="form-status" role="alert"><p><strong>The direct send is temporarily unavailable.</strong> Your details are ready to send through your email app instead.</p><p><a href={draftUrl}>Open email draft ↗</a> · <button className="copy-button" type="button" onClick={copyDetails}>{copied ? "Details copied" : "Copy inquiry details"}</button></p></div>}
   </form>;

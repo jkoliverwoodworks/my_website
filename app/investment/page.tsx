@@ -1,23 +1,24 @@
 import Link from "next/link";
 import { JsonLd } from "@/components/json-ld";
 import { Footer, Header, PageHero } from "@/components/site-chrome";
-import { formatPrice } from "@/lib/pieces";
-import { getDesigns, getSiteContent } from "@/lib/cms-content";
+import { getSiteContent } from "@/lib/cms-content";
 import { breadcrumbSchema, faqSchema, pageMetadata } from "@/lib/site";
 
-export const metadata = pageMetadata("/investment", "Dining Table Pricing & FAQs | J. K. Oliver Woodworks", "Hill Country Collection pricing, standard sizes, hardwood choices, warranty, delivery, and planning answers from J. K. Oliver Woodworks.");
+export async function generateMetadata() {
+  const { pricing } = await getSiteContent();
+  return pageMetadata("/investment", "Dining Table Investment & FAQs | J. K. Oliver Woodworks", `${pricing.range} ${pricing.qualification}`);
+}
 
 export default async function Investment() {
-  const [pieces, content] = await Promise.all([getDesigns(), getSiteContent()]);
+  const content = await getSiteContent();
   const standardPricing = content.pricing;
-  const range = pieces.length ? `${formatPrice(Math.min(...pieces.map(p => p.price)))} to ${formatPrice(Math.max(...pieces.map(p => p.price)))}` : "a price confirmed directly with Jeremy";
   const faqs: [string, string][] = [
-    ["What does a Hill Country Collection table cost?", pieces.length ? `Standard designs currently range from ${range}. Each design page lists its starting price. ${standardPricing.custom}` : "Ask Jeremy about current designs and pricing."],
+    ["What does a handcrafted dining table cost?", `${standardPricing.range} ${standardPricing.qualification} ${standardPricing.custom}`],
     ...content.faqs.map(({ question, answer }) => [question, answer] as [string, string]),
   ];
-  return <><Header /><main id="main-content">
-    <PageHero eyebrow="Investment & planning" title={<>A clear starting point.<br /><em>A table made for you.</em></>} intro={content.pages.investment.introduction} image={content.pages.investment.image} />
-    <section className="pricing-overview section-pad"><div><p className="eyebrow">The Hill Country Collection</p><h2>{pieces.length} designs.<br /><em>One clear foundation.</em></h2><p>{pieces.length ? `Standard configurations range from ${range}.` : "Ask Jeremy about current designs and pricing."}</p><Link className="text-link" href="/work#collection">Compare the designs <span aria-hidden="true">↗</span></Link></div><div className="pricing-assumptions"><h3>Standard pricing includes</h3><ul><li>Rectangular tables: {standardPricing.rectangular}</li><li>Round tables: {standardPricing.round}</li><li>{standardPricing.woods}</li><li>{standardPricing.construction} construction</li><li>{standardPricing.base}</li><li>{standardPricing.upgrade}</li></ul><p>{standardPricing.custom}</p></div></section>
+  return <><Header /><main id="main-content" className="investment-page">
+    <PageHero eyebrow="Investment & planning" title={<>An investment in<br /><em>lasting craftsmanship.</em></>} intro={content.pages.investment.introduction} image={content.pages.investment.image} />
+    <section className="pricing-overview section-pad"><div><p className="eyebrow">Made to order. Made for you.</p><h2>A place to gather.<br /><em>For generations.</em></h2><p className="investment-range">{standardPricing.range}</p><p>{standardPricing.qualification}</p><p>{standardPricing.madeToOrder}</p><Link className="text-link" href="/work#collection">Find your table design <span aria-hidden="true">↗</span></Link></div><div className="pricing-assumptions"><h3>A starting point for your design</h3><ul><li>Standard rectangular size: {standardPricing.rectangular}</li><li>Standard round size: {standardPricing.round}</li><li>{standardPricing.woods}</li><li>{standardPricing.construction} construction</li><li>{standardPricing.base}</li><li>{standardPricing.upgrade}</li></ul><p>{standardPricing.custom}</p><Link className="text-link" href="/contact">Discuss your table <span aria-hidden="true">↗</span></Link></div></section>
     <section className="faq section-pad"><p className="eyebrow">Frequently asked questions</p><h2>Good questions deserve straight answers.</h2>{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</section>
     <JsonLd data={[breadcrumbSchema([{ name: "Investment & FAQs", path: "/investment" }]), faqSchema(faqs)]} />
   </main><Footer /></>;

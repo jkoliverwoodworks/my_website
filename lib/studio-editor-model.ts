@@ -4,7 +4,7 @@ export const pageTabs = [
   { id: "maker", label: "Meet the Maker", path: "/maker", section: "Family is the reason why" },
   { id: "craftsmanship", label: "Craftsmanship", path: "/craftsmanship", section: "Built with purpose" },
   { id: "process", label: "Process", path: "/process", section: "Your idea, shaped with confidence" },
-  { id: "investment", label: "Investment", path: "/investment", section: "A clear starting point" },
+  { id: "investment", label: "Investment", path: "/investment", section: "An investment in lasting craftsmanship" },
   { id: "contact", label: "Contact", path: "/contact", section: "Let’s make room for your story" },
 ] as const;
 export type PageTab = typeof pageTabs[number]["id"];
@@ -14,6 +14,9 @@ export const biographyLabels = [
   "Working directly with Jeremy",
 ];
 export const pricingLabels = {
+  range: "Dining table investment — typical price range",
+  qualification: "Larger tables & specialized designs — range guidance",
+  madeToOrder: "Made to order — investment page message",
   rectangular: "Rectangular table dimensions",
   round: "Round table dimensions",
   woods: "Standard hardwood choices",
@@ -36,7 +39,7 @@ export const defaultPageCopy = {
     offering: "Start with a Hill Country Collection design for a semi-custom table, or bring your own idea for a completely custom piece. You and Jeremy shape the dimensions, wood, and details around your home.",
   },
   investment: {
-    introduction: "Standard prices make it easier to begin. Jeremy confirms every customization, timeline, and delivery detail before the work starts.",
+    introduction: "Our handcrafted dining tables are built from solid hardwood, thoughtfully designed, and made to be enjoyed for generations.",
     image: "/client-assets/hill-country-collection/hero/pedernales-hero.png",
   },
   contact: {
