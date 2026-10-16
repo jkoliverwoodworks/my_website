@@ -23,6 +23,23 @@ export type Design = z.infer<typeof designSchema>;
 export type DesignRecord = Design & { id: string; updated_at: string };
 export type PublicPiece = Omit<DesignRecord, "priceCents"> & { price: number };
 const copy = z.string().trim().min(1).max(4000);
+export const promotionSchema = z.object({
+  enabled: z.boolean(),
+  name: z.string().trim().min(2).max(80),
+  message: z.string().trim().min(2).max(180),
+  percentOff: z.number().int().min(1).max(90),
+  startsOn: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  endsOn: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+}).strict().refine(value => value.endsOn >= value.startsOn, { message: "The sale end date must be on or after its start date.", path: ["endsOn"] });
+export type Promotion = z.infer<typeof promotionSchema>;
+export const defaultPromotion: Promotion = {
+  enabled: false,
+  name: "Workshop sale",
+  message: "Save on every design in the Hill Country Collection for a limited time.",
+  percentOff: 20,
+  startsOn: "2026-01-01",
+  endsOn: "2026-01-31",
+};
 export const contentSchema = z.object({
   collectionIntroduction: copy,
   homeIntroduction: copy,
@@ -44,6 +61,7 @@ export const contentSchema = z.object({
     rectangular: copy, round: copy, woods: copy, construction: copy, base: copy, upgrade: copy, custom: copy,
   }).strict(),
   faqs: z.array(z.object({ question: copy, answer: copy }).strict()).max(30),
+  promotion: promotionSchema.default(defaultPromotion),
 }).strict();
 export type SiteContent = z.infer<typeof contentSchema>;
 export const initialDesigns: Design[] = pieces.map(({ price, ...piece }, position) => ({
@@ -65,6 +83,7 @@ export const defaultContent: SiteContent = {
     "From the first conversation to the final finish, you work directly with me. Your questions, ideas, and the details of your home all have a place in the process.",
   ],
   pricing: { ...standardPricing },
+  promotion: defaultPromotion,
   faqs: [
     { question: "What materials and sizes can I choose?", answer: `Collection designs begin with solid-hardwood construction in red oak or pecan. Standard rectangular tables are ${standardPricing.rectangular}; round tables are ${standardPricing.round}. Other dimensions, hardwoods, and finishes can be discussed with Jeremy as part of your personalized quote.` },
     { question: "Can I choose a natural-wood base?", answer: "Yes. A matching natural-wood base is available as an upgrade on applicable designs. Jeremy will confirm the wood, finish, and final price with you." },
@@ -77,6 +96,17 @@ export const defaultContent: SiteContent = {
 export function publicPiece(record: DesignRecord): PublicPiece {
   const { priceCents, ...piece } = record;
   return { ...piece, price: priceCents / 100 };
+}
+
+export function promotionIsActive(promotion: Promotion, now = new Date()) {
+  const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/Chicago", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(now);
+  const part = (type: "year" | "month" | "day") => parts.find(item => item.type === type)?.value || "";
+  const today = `${part("year")}-${part("month")}-${part("day")}`;
+  return promotion.enabled && today >= promotion.startsOn && today <= promotion.endsOn;
+}
+
+export function promotionalPrice(price: number, promotion: Promotion, now = new Date()) {
+  return promotionIsActive(promotion, now) ? Math.round(price * (100 - promotion.percentOff) / 100) : price;
 }
 
 export function imageType(bytes: Uint8Array): "image/jpeg" | "image/png" | "image/webp" | null {
