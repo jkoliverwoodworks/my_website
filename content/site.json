@@ -213,7 +213,7 @@
   "content": {
     "data": {
       "collectionIntroduction": "Named for the rivers that run through Central Texas, each table in the Hill Country Collection is designed to bring families back to the table and built to become part of the home for years to come.",
-      "homeIntroduction": "The slow Sunday mornings. The extra chair at Thanksgiving. The conversations that carry on long after dinner.",
+      "homeIntroduction": "The slow Sunday mornings. The extra chair at Thanksgiving. The conversations that carry on long after.",
       "homeOffering": "Begin with a semi-custom design from the Hill Country Collection, or bring Jeremy an idea for a completely custom piece. Every table is made in Buda from solid hardwood and shaped around your home.",
       "collectionGuidance": "Choose a design, then tailor the dimensions, hardwood, base finish, and details to your home.",
       "makerIntroduction": "A local craftsman, a love of solid hardwood, and furniture built around the moments that make a house a home.",
@@ -246,16 +246,16 @@
         }
       },
       "pricing": {
+        "range": "Most of our dining tables range from $2,800 to $4,500, depending on the design, dimensions, and wood species selected.",
+        "qualification": "Larger tables, premium hardwoods, and specialized designs may exceed this range.",
+        "madeToOrder": "Every table is made to order, allowing us to create a piece that fits your home, your family, and the way you gather.",
         "rectangular": "36\" × 72\" × 1.25\" thick top",
         "round": "42\" diameter × 1.25\" thick top",
         "woods": "Red oak or pecan",
         "construction": "Solid hardwood",
         "base": "Painted wood bases are standard",
         "upgrade": "Matching natural-wood bases are available as an upgrade",
-        "custom": "Choose your dimensions, hardwood, and finish. Jeremy confirms your personalized quote before work begins.",
-        "range": "Most of our dining tables range from $2,800 to $4,500, depending on the design, dimensions, and wood species selected.",
-        "qualification": "Larger tables, premium hardwoods, and specialized designs may exceed this range.",
-        "madeToOrder": "Every table is made to order, allowing us to create a piece that fits your home, your family, and the way you gather."
+        "custom": "Choose your dimensions, hardwood, and finish. Jeremy confirms your personalized quote before work begins."
       },
       "faqs": [
         {
@@ -282,9 +282,17 @@
           "question": "Do you deliver?",
           "answer": "Delivery details are coordinated as part of your project. J. K. Oliver Woodworks is based in Buda and serves Central Texas."
         }
-      ]
+      ],
+      "promotion": {
+        "enabled": false,
+        "name": "Workshop sale",
+        "message": "Save on every design in the Hill Country Collection for a limited time.",
+        "percentOff": 20,
+        "startsOn": "2026-01-01",
+        "endsOn": "2026-01-31"
+      }
     },
-    "updated_at": "2026-10-14T09:12:15.539Z"
+    "updated_at": "2026-10-17T04:04:43.857Z"
   },
   "media": []
 }
