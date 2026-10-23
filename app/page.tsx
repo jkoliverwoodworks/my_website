@@ -10,7 +10,7 @@ export default async function Home() {
   const featuredWork = pieces.filter(piece => piece.featured).slice(0, 3);
   return <><Header overlay /><main id="main-content">
     <HomeCollectionCarousel pieces={pieces} />
-    <div className="values-strip section-pad"><span>Solid hardwood</span><span>Made to your dimensions</span><span>One-year warranty</span><span>Made in Buda, Texas</span></div>
+    <div className="values-strip section-pad"><span>Solid hardwood</span><span>Made to your dimensions</span><span>Three-year warranty</span><span>Made in Buda, Texas</span></div>
     <section id="our-approach" className="intro section-pad">
       <p className="eyebrow">The art of living with wood</p>
       <div className="intro-grid"><h2>A place to gather.<br />A story to <em>grow into.</em></h2><div><p>{content.homeIntroduction}</p><p>{content.homeOffering}</p><Link className="text-link" href="/work">Explore the collection <span aria-hidden="true">↗</span></Link><br /><Link className="text-link" href="/contact">Discuss a custom commission <span aria-hidden="true">↗</span></Link></div></div>
