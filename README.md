@@ -117,6 +117,20 @@ When using the Sites plugin, follow its skill instructions for installation, bui
 
 The portable build runs Vinext directly without a host `timeout` command. The managed-linux build uses `scripts/build-verified.sh` and its existing `SITES_BUILD_TIMEOUT` setting.
 
+## Staging and Production
+
+- Staging: `Moil-Landingpages/jk-oliver-woodworks` (`main`)
+- Production: `jkoliverwoodworks/my_website` (`main`)
+
+Both repositories share history. Promote and sync with:
+
+- `npm run promote:production`: push staging `main` to production. Refuses if production has commits staging lacks (for example live CMS edits); sync first.
+- `npm run sync:staging`: bring production into staging (fast-forward, or a merge commit if both moved). Stops on conflicts.
+
+Append `-- --dry-run` to preview. Neither command force-pushes or touches your working tree. Override repositories/branches with `PROMOTE_STAGING_REPO`, `PROMOTE_STAGING_BRANCH`, `PROMOTE_PRODUCTION_REPO` and `PROMOTE_PRODUCTION_BRANCH`.
+
+Each deployment's studio must point at its own repository via `STUDIO_GITHUB_OWNER`/`STUDIO_GITHUB_REPO`/`STUDIO_GITHUB_BRANCH`.
+
 ## Learn More
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)

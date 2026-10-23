@@ -14,7 +14,9 @@
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "studio:password-hash": "node --experimental-strip-types scripts/studio-password-hash.mjs",
     "test:cms": "node --experimental-strip-types --test tests/cms-model.test.mjs tests/studio-git.test.mjs tests/studio-security.test.mjs",
-    "test:cms:http": "node --test tests/cms-http.test.mjs"
+    "test:cms:http": "node --test tests/cms-http.test.mjs",
+    "promote:production": "node scripts/promote.mjs production",
+    "sync:staging": "node scripts/promote.mjs staging"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
